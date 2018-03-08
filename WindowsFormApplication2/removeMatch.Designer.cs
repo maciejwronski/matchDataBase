@@ -1057,10 +1057,10 @@
             // removeMatchLabel
             // 
             this.removeMatchLabel.AutoSize = true;
-            this.removeMatchLabel.Font = new System.Drawing.Font("Segoe Print", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.removeMatchLabel.Font = new System.Drawing.Font("Segoe Print", 17.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.removeMatchLabel.Location = new System.Drawing.Point(337, 18);
             this.removeMatchLabel.Name = "removeMatchLabel";
-            this.removeMatchLabel.Size = new System.Drawing.Size(172, 37);
+            this.removeMatchLabel.Size = new System.Drawing.Size(188, 40);
             this.removeMatchLabel.TabIndex = 23;
             this.removeMatchLabel.Text = "Remove Match";
             // 
