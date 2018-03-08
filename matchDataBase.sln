@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "matchDataBase", "WindowsFormsApplication2\matchDataBase.csproj", "{8C210C28-709E-4003-ADE2-C9D625CD39F3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "matchDataBase", "WindowsFormApplication2\matchDataBase.csproj", "{8C210C28-709E-4003-ADE2-C9D625CD39F3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
