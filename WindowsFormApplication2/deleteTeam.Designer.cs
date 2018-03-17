@@ -69,6 +69,7 @@
             this.playerHomeNoLabel = new System.Windows.Forms.Label();
             this.playerIdHomeLabel = new System.Windows.Forms.Label();
             this.teamNameLabel = new System.Windows.Forms.Label();
+            this.returnButton = new System.Windows.Forms.Button();
             this.homeTeamBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -462,11 +463,22 @@
             this.teamNameLabel.TabIndex = 0;
             this.teamNameLabel.Text = "Team Name";
             // 
+            // returnButton
+            // 
+            this.returnButton.Location = new System.Drawing.Point(41, 611);
+            this.returnButton.Name = "returnButton";
+            this.returnButton.Size = new System.Drawing.Size(75, 23);
+            this.returnButton.TabIndex = 22;
+            this.returnButton.Text = "Return";
+            this.returnButton.UseVisualStyleBackColor = true;
+            this.returnButton.Click += new System.EventHandler(this.returnButton_Click);
+            // 
             // deleteTeam
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 661);
+            this.Controls.Add(this.returnButton);
             this.Controls.Add(this.homeTeamBox);
             this.Controls.Add(this.deleteTeamLabel);
             this.Name = "deleteTeam";
@@ -522,5 +534,6 @@
         private System.Windows.Forms.Label playerHomeNoLabel;
         private System.Windows.Forms.Label playerIdHomeLabel;
         private System.Windows.Forms.Label teamNameLabel;
+        private System.Windows.Forms.Button returnButton;
     }
 }

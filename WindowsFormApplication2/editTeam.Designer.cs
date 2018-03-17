@@ -30,6 +30,7 @@
         {
             this.editTeamLabel = new System.Windows.Forms.Label();
             this.homeTeamBox = new System.Windows.Forms.GroupBox();
+            this.editTeamComboBox = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
             this.PlayerID11 = new System.Windows.Forms.TextBox();
             this.PlayerID10 = new System.Windows.Forms.TextBox();
@@ -68,7 +69,7 @@
             this.playerHomeNoLabel = new System.Windows.Forms.Label();
             this.playerIdHomeLabel = new System.Windows.Forms.Label();
             this.teamNameLabel = new System.Windows.Forms.Label();
-            this.editTeamComboBox = new System.Windows.Forms.ComboBox();
+            this.returnButton = new System.Windows.Forms.Button();
             this.homeTeamBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -128,6 +129,15 @@
             this.homeTeamBox.Size = new System.Drawing.Size(350, 467);
             this.homeTeamBox.TabIndex = 18;
             this.homeTeamBox.TabStop = false;
+            // 
+            // editTeamComboBox
+            // 
+            this.editTeamComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.editTeamComboBox.FormattingEnabled = true;
+            this.editTeamComboBox.Location = new System.Drawing.Point(158, 27);
+            this.editTeamComboBox.Name = "editTeamComboBox";
+            this.editTeamComboBox.Size = new System.Drawing.Size(121, 21);
+            this.editTeamComboBox.TabIndex = 71;
             // 
             // button1
             // 
@@ -420,14 +430,15 @@
             this.teamNameLabel.TabIndex = 0;
             this.teamNameLabel.Text = "Team Name";
             // 
-            // editTeamComboBox
+            // returnButton
             // 
-            this.editTeamComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.editTeamComboBox.FormattingEnabled = true;
-            this.editTeamComboBox.Location = new System.Drawing.Point(158, 27);
-            this.editTeamComboBox.Name = "editTeamComboBox";
-            this.editTeamComboBox.Size = new System.Drawing.Size(121, 21);
-            this.editTeamComboBox.TabIndex = 71;
+            this.returnButton.Location = new System.Drawing.Point(27, 616);
+            this.returnButton.Name = "returnButton";
+            this.returnButton.Size = new System.Drawing.Size(75, 23);
+            this.returnButton.TabIndex = 20;
+            this.returnButton.Text = "Return";
+            this.returnButton.UseVisualStyleBackColor = true;
+            this.returnButton.Click += new System.EventHandler(this.returnButton_Click);
             // 
             // editTeam
             // 
@@ -435,6 +446,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(784, 661);
+            this.Controls.Add(this.returnButton);
             this.Controls.Add(this.editTeamLabel);
             this.Controls.Add(this.homeTeamBox);
             this.Name = "editTeam";
@@ -490,5 +502,6 @@
         private System.Windows.Forms.Label playerHomeNoLabel;
         private System.Windows.Forms.Label playerIdHomeLabel;
         private System.Windows.Forms.Label teamNameLabel;
+        private System.Windows.Forms.Button returnButton;
     }
 }

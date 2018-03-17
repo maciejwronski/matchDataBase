@@ -38,6 +38,8 @@
             this.matchTimeBox = new System.Windows.Forms.MaskedTextBox();
             this.competitionID = new System.Windows.Forms.ComboBox();
             this.teamBox = new System.Windows.Forms.GroupBox();
+            this.homeTeamComboBox = new System.Windows.Forms.ComboBox();
+            this.awayTeamComboBox = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.homeTeamBox = new System.Windows.Forms.GroupBox();
@@ -145,8 +147,8 @@
             this.PlayerNo5Away = new System.Windows.Forms.TextBox();
             this.Goals5Away = new System.Windows.Forms.TextBox();
             this.addMatchLabel = new System.Windows.Forms.Label();
-            this.awayTeamComboBox = new System.Windows.Forms.ComboBox();
-            this.homeTeamComboBox = new System.Windows.Forms.ComboBox();
+            this.returnButton = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.matchBox.SuspendLayout();
             this.teamBox.SuspendLayout();
             this.homeTeamBox.SuspendLayout();
@@ -257,6 +259,24 @@
             this.teamBox.TabIndex = 10;
             this.teamBox.TabStop = false;
             // 
+            // homeTeamComboBox
+            // 
+            this.homeTeamComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.homeTeamComboBox.FormattingEnabled = true;
+            this.homeTeamComboBox.Location = new System.Drawing.Point(223, 13);
+            this.homeTeamComboBox.Name = "homeTeamComboBox";
+            this.homeTeamComboBox.Size = new System.Drawing.Size(121, 21);
+            this.homeTeamComboBox.TabIndex = 12;
+            // 
+            // awayTeamComboBox
+            // 
+            this.awayTeamComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.awayTeamComboBox.FormattingEnabled = true;
+            this.awayTeamComboBox.Location = new System.Drawing.Point(422, 13);
+            this.awayTeamComboBox.Name = "awayTeamComboBox";
+            this.awayTeamComboBox.Size = new System.Drawing.Size(121, 21);
+            this.awayTeamComboBox.TabIndex = 11;
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -277,6 +297,7 @@
             // 
             // homeTeamBox
             // 
+            this.homeTeamBox.Controls.Add(this.returnButton);
             this.homeTeamBox.Controls.Add(this.totalHome);
             this.homeTeamBox.Controls.Add(this.totalHomeLabel);
             this.homeTeamBox.Controls.Add(this.Goals11Home);
@@ -723,6 +744,7 @@
             // 
             // awayTeamBox
             // 
+            this.awayTeamBox.Controls.Add(this.button1);
             this.awayTeamBox.Controls.Add(this.totalAway);
             this.awayTeamBox.Controls.Add(this.totalAwayLabel);
             this.awayTeamBox.Controls.Add(this.Goals11Away);
@@ -1178,23 +1200,24 @@
             this.addMatchLabel.TabIndex = 12;
             this.addMatchLabel.Text = "Add Match";
             // 
-            // awayTeamComboBox
+            // returnButton
             // 
-            this.awayTeamComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.awayTeamComboBox.FormattingEnabled = true;
-            this.awayTeamComboBox.Location = new System.Drawing.Point(422, 13);
-            this.awayTeamComboBox.Name = "awayTeamComboBox";
-            this.awayTeamComboBox.Size = new System.Drawing.Size(121, 21);
-            this.awayTeamComboBox.TabIndex = 11;
+            this.returnButton.Location = new System.Drawing.Point(9, 438);
+            this.returnButton.Name = "returnButton";
+            this.returnButton.Size = new System.Drawing.Size(75, 23);
+            this.returnButton.TabIndex = 19;
+            this.returnButton.Text = "Return";
+            this.returnButton.UseVisualStyleBackColor = true;
+            this.returnButton.Click += new System.EventHandler(this.returnButton_Click);
             // 
-            // homeTeamComboBox
+            // button1
             // 
-            this.homeTeamComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.homeTeamComboBox.FormattingEnabled = true;
-            this.homeTeamComboBox.Location = new System.Drawing.Point(223, 13);
-            this.homeTeamComboBox.Name = "homeTeamComboBox";
-            this.homeTeamComboBox.Size = new System.Drawing.Size(121, 21);
-            this.homeTeamComboBox.TabIndex = 12;
+            this.button1.Location = new System.Drawing.Point(13, 438);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 71;
+            this.button1.Text = "OK";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // addMatch
             // 
@@ -1344,6 +1367,8 @@
         private System.Windows.Forms.Label addMatchLabel;
         private System.Windows.Forms.ComboBox homeTeamComboBox;
         private System.Windows.Forms.ComboBox awayTeamComboBox;
+        private System.Windows.Forms.Button returnButton;
+        private System.Windows.Forms.Button button1;
     }
 }
 

@@ -16,5 +16,10 @@ namespace WindowsFormsApplication2
         {
             InitializeComponent();
         }
+
+        private void returnButton_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.OK;
+        }
     }
 }

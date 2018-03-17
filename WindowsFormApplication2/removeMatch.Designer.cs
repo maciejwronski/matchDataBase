@@ -148,6 +148,7 @@
             this.PlayerNo8Away = new System.Windows.Forms.TextBox();
             this.playerId3Away = new System.Windows.Forms.ComboBox();
             this.playerId8Away = new System.Windows.Forms.ComboBox();
+            this.returnButton = new System.Windows.Forms.Button();
             this.homeTeamBox.SuspendLayout();
             this.teamBox.SuspendLayout();
             this.matchBox.SuspendLayout();
@@ -156,6 +157,7 @@
             // 
             // homeTeamBox
             // 
+            this.homeTeamBox.Controls.Add(this.returnButton);
             this.homeTeamBox.Controls.Add(this.totalHome);
             this.homeTeamBox.Controls.Add(this.totalHomeLabel);
             this.homeTeamBox.Controls.Add(this.Goals11Home);
@@ -1318,6 +1320,16 @@
             this.playerId8Away.Size = new System.Drawing.Size(99, 21);
             this.playerId8Away.TabIndex = 87;
             // 
+            // returnButton
+            // 
+            this.returnButton.Location = new System.Drawing.Point(9, 438);
+            this.returnButton.Name = "returnButton";
+            this.returnButton.Size = new System.Drawing.Size(75, 23);
+            this.returnButton.TabIndex = 20;
+            this.returnButton.Text = "Return";
+            this.returnButton.UseVisualStyleBackColor = true;
+            this.returnButton.Click += new System.EventHandler(this.returnButton_Click);
+            // 
             // removeMatch
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1467,5 +1479,6 @@
         private System.Windows.Forms.TextBox PlayerNo8Away;
         private System.Windows.Forms.ComboBox playerId3Away;
         private System.Windows.Forms.ComboBox playerId8Away;
+        private System.Windows.Forms.Button returnButton;
     }
 }

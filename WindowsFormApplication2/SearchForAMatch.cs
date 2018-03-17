@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApplication2
 {
-    public partial class editTeam : Form
+    public partial class SearchForAMatch : Form
     {
-        public editTeam()
+        public SearchForAMatch()
         {
             InitializeComponent();
         }

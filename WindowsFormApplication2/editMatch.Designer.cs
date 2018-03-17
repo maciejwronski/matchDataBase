@@ -30,6 +30,7 @@
         {
             this.editMatchLabel = new System.Windows.Forms.Label();
             this.awayTeamBox = new System.Windows.Forms.GroupBox();
+            this.EditMatchButton = new System.Windows.Forms.Button();
             this.totalAway = new System.Windows.Forms.TextBox();
             this.totalAwayLabel = new System.Windows.Forms.Label();
             this.Goals11Away = new System.Windows.Forms.TextBox();
@@ -147,7 +148,7 @@
             this.competitionIdLabel = new System.Windows.Forms.Label();
             this.matchDateLabel = new System.Windows.Forms.Label();
             this.matchTimeLabel = new System.Windows.Forms.Label();
-            this.EditMatchButton = new System.Windows.Forms.Button();
+            this.returnButton = new System.Windows.Forms.Button();
             this.awayTeamBox.SuspendLayout();
             this.homeTeamBox.SuspendLayout();
             this.teamBox.SuspendLayout();
@@ -223,6 +224,15 @@
             this.awayTeamBox.Size = new System.Drawing.Size(350, 467);
             this.awayTeamBox.TabIndex = 13;
             this.awayTeamBox.TabStop = false;
+            // 
+            // EditMatchButton
+            // 
+            this.EditMatchButton.Location = new System.Drawing.Point(9, 438);
+            this.EditMatchButton.Name = "EditMatchButton";
+            this.EditMatchButton.Size = new System.Drawing.Size(75, 23);
+            this.EditMatchButton.TabIndex = 18;
+            this.EditMatchButton.Text = "Accept";
+            this.EditMatchButton.UseVisualStyleBackColor = true;
             // 
             // totalAway
             // 
@@ -651,6 +661,7 @@
             // 
             // homeTeamBox
             // 
+            this.homeTeamBox.Controls.Add(this.returnButton);
             this.homeTeamBox.Controls.Add(this.totalHome);
             this.homeTeamBox.Controls.Add(this.totalHomeLabel);
             this.homeTeamBox.Controls.Add(this.Goals11Home);
@@ -1272,14 +1283,15 @@
             this.matchTimeLabel.TabIndex = 2;
             this.matchTimeLabel.Text = "Match Time:";
             // 
-            // EditMatchButton
+            // returnButton
             // 
-            this.EditMatchButton.Location = new System.Drawing.Point(9, 438);
-            this.EditMatchButton.Name = "EditMatchButton";
-            this.EditMatchButton.Size = new System.Drawing.Size(75, 23);
-            this.EditMatchButton.TabIndex = 18;
-            this.EditMatchButton.Text = "Accept";
-            this.EditMatchButton.UseVisualStyleBackColor = true;
+            this.returnButton.Location = new System.Drawing.Point(6, 438);
+            this.returnButton.Name = "returnButton";
+            this.returnButton.Size = new System.Drawing.Size(75, 23);
+            this.returnButton.TabIndex = 18;
+            this.returnButton.Text = "Return";
+            this.returnButton.UseVisualStyleBackColor = true;
+            this.returnButton.Click += new System.EventHandler(this.returnButton_Click);
             // 
             // editMatch
             // 
@@ -1430,5 +1442,6 @@
         private System.Windows.Forms.Label matchDateLabel;
         private System.Windows.Forms.Label matchTimeLabel;
         private System.Windows.Forms.Button EditMatchButton;
+        private System.Windows.Forms.Button returnButton;
     }
 }

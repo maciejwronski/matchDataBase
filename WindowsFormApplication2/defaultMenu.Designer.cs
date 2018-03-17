@@ -36,6 +36,7 @@
             this.deleteTeamButton = new System.Windows.Forms.Button();
             this.editMatchButton = new System.Windows.Forms.Button();
             this.removeMatchButton = new System.Windows.Forms.Button();
+            this.SearchForMatchButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // defaultMenuLabel
@@ -67,6 +68,7 @@
             this.addTeamButton.TabIndex = 2;
             this.addTeamButton.Text = "Add Team";
             this.addTeamButton.UseVisualStyleBackColor = true;
+            this.addTeamButton.Click += new System.EventHandler(this.addTeamButton_Click);
             // 
             // addMatchButton
             // 
@@ -77,6 +79,7 @@
             this.addMatchButton.TabIndex = 5;
             this.addMatchButton.Text = "Add Match";
             this.addMatchButton.UseVisualStyleBackColor = true;
+            this.addMatchButton.Click += new System.EventHandler(this.addMatchButton_Click);
             // 
             // editTeamButton
             // 
@@ -87,6 +90,7 @@
             this.editTeamButton.TabIndex = 6;
             this.editTeamButton.Text = "Edit Team";
             this.editTeamButton.UseVisualStyleBackColor = true;
+            this.editTeamButton.Click += new System.EventHandler(this.editTeamButton_Click);
             // 
             // deleteTeamButton
             // 
@@ -97,6 +101,7 @@
             this.deleteTeamButton.TabIndex = 7;
             this.deleteTeamButton.Text = "Delete Team";
             this.deleteTeamButton.UseVisualStyleBackColor = true;
+            this.deleteTeamButton.Click += new System.EventHandler(this.deleteTeamButton_Click);
             // 
             // editMatchButton
             // 
@@ -107,6 +112,7 @@
             this.editMatchButton.TabIndex = 8;
             this.editMatchButton.Text = "Edit Match";
             this.editMatchButton.UseVisualStyleBackColor = true;
+            this.editMatchButton.Click += new System.EventHandler(this.editMatchButton_Click);
             // 
             // removeMatchButton
             // 
@@ -117,6 +123,18 @@
             this.removeMatchButton.TabIndex = 9;
             this.removeMatchButton.Text = "Remove Match";
             this.removeMatchButton.UseVisualStyleBackColor = true;
+            this.removeMatchButton.Click += new System.EventHandler(this.removeMatchButton_Click);
+            // 
+            // SearchForMatchButton
+            // 
+            this.SearchForMatchButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.SearchForMatchButton.Location = new System.Drawing.Point(360, 501);
+            this.SearchForMatchButton.Name = "SearchForMatchButton";
+            this.SearchForMatchButton.Size = new System.Drawing.Size(131, 106);
+            this.SearchForMatchButton.TabIndex = 10;
+            this.SearchForMatchButton.Text = "Search for a Match";
+            this.SearchForMatchButton.UseVisualStyleBackColor = true;
+            this.SearchForMatchButton.Click += new System.EventHandler(this.SearchForMatchButton_Click);
             // 
             // defaultMenu
             // 
@@ -124,6 +142,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(784, 661);
+            this.Controls.Add(this.SearchForMatchButton);
             this.Controls.Add(this.removeMatchButton);
             this.Controls.Add(this.editMatchButton);
             this.Controls.Add(this.deleteTeamButton);
@@ -150,5 +169,6 @@
         private System.Windows.Forms.Button deleteTeamButton;
         private System.Windows.Forms.Button editMatchButton;
         private System.Windows.Forms.Button removeMatchButton;
+        private System.Windows.Forms.Button SearchForMatchButton;
     }
 }

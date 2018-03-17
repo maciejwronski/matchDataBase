@@ -31,3 +31,5 @@ C:\Users\Maciej\Documents\Visual Studio 2015\Projects\matchDataBase\WindowsFormA
 C:\Users\Maciej\Documents\Visual Studio 2015\Projects\matchDataBase\WindowsFormApplication2\obj\Debug\WindowsFormsApplication2.Properties.Resources.resources
 C:\Users\Maciej\Documents\Visual Studio 2015\Projects\matchDataBase\WindowsFormApplication2\obj\Debug\WindowsFormsApplication2.removeMatch.resources
 C:\Users\Maciej\Documents\Visual Studio 2015\Projects\matchDataBase\WindowsFormApplication2\obj\Debug\matchDataBase.csproj.GenerateResource.Cache
+C:\Users\Maciej\Documents\Visual Studio 2015\Projects\matchDataBase\WindowsFormApplication2\obj\Debug\WindowsFormsApplication2.SearchForAMatch.resources
+C:\Users\Maciej\Documents\Visual Studio 2015\Projects\matchDataBase\WindowsFormApplication2\bin\Debug\MySql.Data.dll
