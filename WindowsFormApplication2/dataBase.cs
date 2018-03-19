@@ -1,9 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Data;
+using System.Collections.Generic;
+
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
 using MySql.Data.MySqlClient;
 using MySql.Data;
 
@@ -38,19 +41,13 @@ namespace WindowsFormsApplication2
             MySqlCommand Command = new MySqlCommand();
             Command = new MySqlCommand(command, connection);
             Command.ExecuteNonQuery();
-            Console.WriteLine(Command.LastInsertedId);
         }
         public long insertAndReturnCommand(string command)
         {
             MySqlCommand Command = new MySqlCommand();
             Command = new MySqlCommand(command, connection);
             Command.ExecuteNonQuery();
-            return Command.LastInsertedId;
-        }
-        public long returnLastInsertedID()
-        {
-            MySqlCommand comm = new MySqlCommand();
-            return comm.LastInsertedId;
+            return Command.LastInsertedId; // check if inserted??
         }
         public bool isConnected()
         {
@@ -81,6 +78,50 @@ namespace WindowsFormsApplication2
             catch (MySqlException ex)
             {
                 return false;
+            }
+        }
+        public void loadTeamsToListBox(ListBox listBoxData)
+        {
+            string Query = "select * from teams;";
+            MySqlCommand Command = new MySqlCommand();
+            Command = new MySqlCommand(Query, connection);
+            MySqlDataReader mySqlReader;
+
+            mySqlReader = Command.ExecuteReader();
+            while ( mySqlReader.Read()){
+                string sName =  mySqlReader.GetString("teamID") + "." + mySqlReader.GetString("name");
+                listBoxData.Items.Add(sName);
+            }
+
+        }
+        public void loadPlayersToBoxes(ListBox ListBoxData, TextBox[] idBoxes, TextBox[] noBoxes, ComboBox[] positionBoxes)
+        {
+            int i = 0;
+            string Query = "select * from players where Teams_TeamID = '" + (ListBoxData.SelectedIndex + 1) +"';";
+            Console.WriteLine("select * from players where Teams_TeamID = '" + (ListBoxData.SelectedIndex + 1) + "';");
+            MySqlCommand Command = new MySqlCommand();
+            Command = new MySqlCommand(Query, connection);
+            MySqlDataReader mySqlReader;
+            mySqlReader = Command.ExecuteReader();
+
+
+            while (mySqlReader.Read())
+            {
+                idBoxes[i].Text = mySqlReader.GetString("PlayerName").ToString();
+                noBoxes[i].Text = mySqlReader.GetInt32("PlayerNumber").ToString();
+                positionBoxes[i].Text = mySqlReader.GetString("Positions_PositionsID").ToString();
+                Console.WriteLine(mySqlReader.GetString("PlayerName").ToString() + " " + mySqlReader.GetInt32("PlayerNumber").ToString() + " " + mySqlReader.GetString("Positions_PositionsID").ToString() + "\n");
+                i++;
+            }
+        }
+        public void addPlayersToDatabase(TextBox TeamNameBox, TextBox[] idBoxes, TextBox[] noBoxes, ComboBox[] positionBoxes)
+        {
+            string Query = "INSERT into teams (Name) VALUES('" + TeamNameBox.Text.ToString() + "');";
+            long lastInsertedId = insertAndReturnCommand(Query);
+            for (int i = 0; i < 11; i++)
+            {
+                Query = "INSERT into players (PlayerName, PlayerNumber, Teams_TeamID, Positions_PositionsID) VALUES('" + idBoxes[i].Text + "', '" + noBoxes[i].Text + "', '" + lastInsertedId + "', '" + positionBoxes[i].Text + "'); ";
+                sendCommand(Query);
             }
         }
     }
