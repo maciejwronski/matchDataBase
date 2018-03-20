@@ -30,6 +30,17 @@
         {
             this.editTeamLabel = new System.Windows.Forms.Label();
             this.homeTeamBox = new System.Windows.Forms.GroupBox();
+            this.PlayerPosition11 = new System.Windows.Forms.ComboBox();
+            this.PlayerPosition10 = new System.Windows.Forms.ComboBox();
+            this.PlayerPosition9 = new System.Windows.Forms.ComboBox();
+            this.PlayerPosition8 = new System.Windows.Forms.ComboBox();
+            this.PlayerPosition7 = new System.Windows.Forms.ComboBox();
+            this.PlayerPosition6 = new System.Windows.Forms.ComboBox();
+            this.PlayerPosition5 = new System.Windows.Forms.ComboBox();
+            this.PlayerPosition4 = new System.Windows.Forms.ComboBox();
+            this.PlayerPosition3 = new System.Windows.Forms.ComboBox();
+            this.PlayerPosition2 = new System.Windows.Forms.ComboBox();
+            this.PlayerPosition1 = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
             this.PlayerID11 = new System.Windows.Forms.TextBox();
             this.PlayerID10 = new System.Windows.Forms.TextBox();
@@ -60,17 +71,6 @@
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.label1 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
-            this.PlayerPosition11 = new System.Windows.Forms.ComboBox();
-            this.PlayerPosition10 = new System.Windows.Forms.ComboBox();
-            this.PlayerPosition9 = new System.Windows.Forms.ComboBox();
-            this.PlayerPosition8 = new System.Windows.Forms.ComboBox();
-            this.PlayerPosition7 = new System.Windows.Forms.ComboBox();
-            this.PlayerPosition6 = new System.Windows.Forms.ComboBox();
-            this.PlayerPosition5 = new System.Windows.Forms.ComboBox();
-            this.PlayerPosition4 = new System.Windows.Forms.ComboBox();
-            this.PlayerPosition3 = new System.Windows.Forms.ComboBox();
-            this.PlayerPosition2 = new System.Windows.Forms.ComboBox();
-            this.PlayerPosition1 = new System.Windows.Forms.ComboBox();
             this.homeTeamBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -129,6 +129,160 @@
             this.homeTeamBox.TabIndex = 18;
             this.homeTeamBox.TabStop = false;
             // 
+            // PlayerPosition11
+            // 
+            this.PlayerPosition11.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.PlayerPosition11.FormattingEnabled = true;
+            this.PlayerPosition11.Items.AddRange(new object[] {
+            "GoalKeeper",
+            "Defender",
+            "Midfielder",
+            "Forward"});
+            this.PlayerPosition11.Location = new System.Drawing.Point(223, 374);
+            this.PlayerPosition11.Name = "PlayerPosition11";
+            this.PlayerPosition11.Size = new System.Drawing.Size(121, 21);
+            this.PlayerPosition11.TabIndex = 92;
+            // 
+            // PlayerPosition10
+            // 
+            this.PlayerPosition10.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.PlayerPosition10.FormattingEnabled = true;
+            this.PlayerPosition10.Items.AddRange(new object[] {
+            "GoalKeeper",
+            "Defender",
+            "Midfielder",
+            "Forward"});
+            this.PlayerPosition10.Location = new System.Drawing.Point(223, 347);
+            this.PlayerPosition10.Name = "PlayerPosition10";
+            this.PlayerPosition10.Size = new System.Drawing.Size(121, 21);
+            this.PlayerPosition10.TabIndex = 91;
+            // 
+            // PlayerPosition9
+            // 
+            this.PlayerPosition9.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.PlayerPosition9.FormattingEnabled = true;
+            this.PlayerPosition9.Items.AddRange(new object[] {
+            "GoalKeeper",
+            "Defender",
+            "Midfielder",
+            "Forward"});
+            this.PlayerPosition9.Location = new System.Drawing.Point(223, 322);
+            this.PlayerPosition9.Name = "PlayerPosition9";
+            this.PlayerPosition9.Size = new System.Drawing.Size(121, 21);
+            this.PlayerPosition9.TabIndex = 90;
+            // 
+            // PlayerPosition8
+            // 
+            this.PlayerPosition8.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.PlayerPosition8.FormattingEnabled = true;
+            this.PlayerPosition8.Items.AddRange(new object[] {
+            "GoalKeeper",
+            "Defender",
+            "Midfielder",
+            "Forward"});
+            this.PlayerPosition8.Location = new System.Drawing.Point(223, 295);
+            this.PlayerPosition8.Name = "PlayerPosition8";
+            this.PlayerPosition8.Size = new System.Drawing.Size(121, 21);
+            this.PlayerPosition8.TabIndex = 89;
+            // 
+            // PlayerPosition7
+            // 
+            this.PlayerPosition7.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.PlayerPosition7.FormattingEnabled = true;
+            this.PlayerPosition7.Items.AddRange(new object[] {
+            "GoalKeeper",
+            "Defender",
+            "Midfielder",
+            "Forward"});
+            this.PlayerPosition7.Location = new System.Drawing.Point(223, 268);
+            this.PlayerPosition7.Name = "PlayerPosition7";
+            this.PlayerPosition7.Size = new System.Drawing.Size(121, 21);
+            this.PlayerPosition7.TabIndex = 88;
+            // 
+            // PlayerPosition6
+            // 
+            this.PlayerPosition6.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.PlayerPosition6.FormattingEnabled = true;
+            this.PlayerPosition6.Items.AddRange(new object[] {
+            "GoalKeeper",
+            "Defender",
+            "Midfielder",
+            "Forward"});
+            this.PlayerPosition6.Location = new System.Drawing.Point(223, 243);
+            this.PlayerPosition6.Name = "PlayerPosition6";
+            this.PlayerPosition6.Size = new System.Drawing.Size(121, 21);
+            this.PlayerPosition6.TabIndex = 87;
+            // 
+            // PlayerPosition5
+            // 
+            this.PlayerPosition5.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.PlayerPosition5.FormattingEnabled = true;
+            this.PlayerPosition5.Items.AddRange(new object[] {
+            "GoalKeeper",
+            "Defender",
+            "Midfielder",
+            "Forward"});
+            this.PlayerPosition5.Location = new System.Drawing.Point(223, 216);
+            this.PlayerPosition5.Name = "PlayerPosition5";
+            this.PlayerPosition5.Size = new System.Drawing.Size(121, 21);
+            this.PlayerPosition5.TabIndex = 86;
+            // 
+            // PlayerPosition4
+            // 
+            this.PlayerPosition4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.PlayerPosition4.FormattingEnabled = true;
+            this.PlayerPosition4.Items.AddRange(new object[] {
+            "GoalKeeper",
+            "Defender",
+            "Midfielder",
+            "Forward"});
+            this.PlayerPosition4.Location = new System.Drawing.Point(223, 191);
+            this.PlayerPosition4.Name = "PlayerPosition4";
+            this.PlayerPosition4.Size = new System.Drawing.Size(121, 21);
+            this.PlayerPosition4.TabIndex = 85;
+            // 
+            // PlayerPosition3
+            // 
+            this.PlayerPosition3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.PlayerPosition3.FormattingEnabled = true;
+            this.PlayerPosition3.Items.AddRange(new object[] {
+            "GoalKeeper",
+            "Defender",
+            "Midfielder",
+            "Forward"});
+            this.PlayerPosition3.Location = new System.Drawing.Point(223, 164);
+            this.PlayerPosition3.Name = "PlayerPosition3";
+            this.PlayerPosition3.Size = new System.Drawing.Size(121, 21);
+            this.PlayerPosition3.TabIndex = 84;
+            // 
+            // PlayerPosition2
+            // 
+            this.PlayerPosition2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.PlayerPosition2.FormattingEnabled = true;
+            this.PlayerPosition2.Items.AddRange(new object[] {
+            "GoalKeeper",
+            "Defender",
+            "Midfielder",
+            "Forward"});
+            this.PlayerPosition2.Location = new System.Drawing.Point(223, 137);
+            this.PlayerPosition2.Name = "PlayerPosition2";
+            this.PlayerPosition2.Size = new System.Drawing.Size(121, 21);
+            this.PlayerPosition2.TabIndex = 83;
+            // 
+            // PlayerPosition1
+            // 
+            this.PlayerPosition1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.PlayerPosition1.FormattingEnabled = true;
+            this.PlayerPosition1.Items.AddRange(new object[] {
+            "GoalKeeper",
+            "Defender",
+            "Midfielder",
+            "Forward"});
+            this.PlayerPosition1.Location = new System.Drawing.Point(223, 110);
+            this.PlayerPosition1.Name = "PlayerPosition1";
+            this.PlayerPosition1.Size = new System.Drawing.Size(121, 21);
+            this.PlayerPosition1.TabIndex = 82;
+            // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(260, 426);
@@ -137,6 +291,7 @@
             this.button1.TabIndex = 70;
             this.button1.Text = "OK";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // PlayerID11
             // 
@@ -371,160 +526,6 @@
             this.button2.Text = "Load Teams";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // PlayerPosition11
-            // 
-            this.PlayerPosition11.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.PlayerPosition11.FormattingEnabled = true;
-            this.PlayerPosition11.Items.AddRange(new object[] {
-            "GoalKeeper",
-            "Defender",
-            "Midfielder",
-            "Forward"});
-            this.PlayerPosition11.Location = new System.Drawing.Point(223, 374);
-            this.PlayerPosition11.Name = "PlayerPosition11";
-            this.PlayerPosition11.Size = new System.Drawing.Size(121, 21);
-            this.PlayerPosition11.TabIndex = 92;
-            // 
-            // PlayerPosition10
-            // 
-            this.PlayerPosition10.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.PlayerPosition10.FormattingEnabled = true;
-            this.PlayerPosition10.Items.AddRange(new object[] {
-            "GoalKeeper",
-            "Defender",
-            "Midfielder",
-            "Forward"});
-            this.PlayerPosition10.Location = new System.Drawing.Point(223, 347);
-            this.PlayerPosition10.Name = "PlayerPosition10";
-            this.PlayerPosition10.Size = new System.Drawing.Size(121, 21);
-            this.PlayerPosition10.TabIndex = 91;
-            // 
-            // PlayerPosition9
-            // 
-            this.PlayerPosition9.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.PlayerPosition9.FormattingEnabled = true;
-            this.PlayerPosition9.Items.AddRange(new object[] {
-            "GoalKeeper",
-            "Defender",
-            "Midfielder",
-            "Forward"});
-            this.PlayerPosition9.Location = new System.Drawing.Point(223, 322);
-            this.PlayerPosition9.Name = "PlayerPosition9";
-            this.PlayerPosition9.Size = new System.Drawing.Size(121, 21);
-            this.PlayerPosition9.TabIndex = 90;
-            // 
-            // PlayerPosition8
-            // 
-            this.PlayerPosition8.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.PlayerPosition8.FormattingEnabled = true;
-            this.PlayerPosition8.Items.AddRange(new object[] {
-            "GoalKeeper",
-            "Defender",
-            "Midfielder",
-            "Forward"});
-            this.PlayerPosition8.Location = new System.Drawing.Point(223, 295);
-            this.PlayerPosition8.Name = "PlayerPosition8";
-            this.PlayerPosition8.Size = new System.Drawing.Size(121, 21);
-            this.PlayerPosition8.TabIndex = 89;
-            // 
-            // PlayerPosition7
-            // 
-            this.PlayerPosition7.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.PlayerPosition7.FormattingEnabled = true;
-            this.PlayerPosition7.Items.AddRange(new object[] {
-            "GoalKeeper",
-            "Defender",
-            "Midfielder",
-            "Forward"});
-            this.PlayerPosition7.Location = new System.Drawing.Point(223, 268);
-            this.PlayerPosition7.Name = "PlayerPosition7";
-            this.PlayerPosition7.Size = new System.Drawing.Size(121, 21);
-            this.PlayerPosition7.TabIndex = 88;
-            // 
-            // PlayerPosition6
-            // 
-            this.PlayerPosition6.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.PlayerPosition6.FormattingEnabled = true;
-            this.PlayerPosition6.Items.AddRange(new object[] {
-            "GoalKeeper",
-            "Defender",
-            "Midfielder",
-            "Forward"});
-            this.PlayerPosition6.Location = new System.Drawing.Point(223, 243);
-            this.PlayerPosition6.Name = "PlayerPosition6";
-            this.PlayerPosition6.Size = new System.Drawing.Size(121, 21);
-            this.PlayerPosition6.TabIndex = 87;
-            // 
-            // PlayerPosition5
-            // 
-            this.PlayerPosition5.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.PlayerPosition5.FormattingEnabled = true;
-            this.PlayerPosition5.Items.AddRange(new object[] {
-            "GoalKeeper",
-            "Defender",
-            "Midfielder",
-            "Forward"});
-            this.PlayerPosition5.Location = new System.Drawing.Point(223, 216);
-            this.PlayerPosition5.Name = "PlayerPosition5";
-            this.PlayerPosition5.Size = new System.Drawing.Size(121, 21);
-            this.PlayerPosition5.TabIndex = 86;
-            // 
-            // PlayerPosition4
-            // 
-            this.PlayerPosition4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.PlayerPosition4.FormattingEnabled = true;
-            this.PlayerPosition4.Items.AddRange(new object[] {
-            "GoalKeeper",
-            "Defender",
-            "Midfielder",
-            "Forward"});
-            this.PlayerPosition4.Location = new System.Drawing.Point(223, 191);
-            this.PlayerPosition4.Name = "PlayerPosition4";
-            this.PlayerPosition4.Size = new System.Drawing.Size(121, 21);
-            this.PlayerPosition4.TabIndex = 85;
-            // 
-            // PlayerPosition3
-            // 
-            this.PlayerPosition3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.PlayerPosition3.FormattingEnabled = true;
-            this.PlayerPosition3.Items.AddRange(new object[] {
-            "GoalKeeper",
-            "Defender",
-            "Midfielder",
-            "Forward"});
-            this.PlayerPosition3.Location = new System.Drawing.Point(223, 164);
-            this.PlayerPosition3.Name = "PlayerPosition3";
-            this.PlayerPosition3.Size = new System.Drawing.Size(121, 21);
-            this.PlayerPosition3.TabIndex = 84;
-            // 
-            // PlayerPosition2
-            // 
-            this.PlayerPosition2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.PlayerPosition2.FormattingEnabled = true;
-            this.PlayerPosition2.Items.AddRange(new object[] {
-            "GoalKeeper",
-            "Defender",
-            "Midfielder",
-            "Forward"});
-            this.PlayerPosition2.Location = new System.Drawing.Point(223, 137);
-            this.PlayerPosition2.Name = "PlayerPosition2";
-            this.PlayerPosition2.Size = new System.Drawing.Size(121, 21);
-            this.PlayerPosition2.TabIndex = 83;
-            // 
-            // PlayerPosition1
-            // 
-            this.PlayerPosition1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.PlayerPosition1.FormattingEnabled = true;
-            this.PlayerPosition1.Items.AddRange(new object[] {
-            "GoalKeeper",
-            "Defender",
-            "Midfielder",
-            "Forward"});
-            this.PlayerPosition1.Location = new System.Drawing.Point(223, 110);
-            this.PlayerPosition1.Name = "PlayerPosition1";
-            this.PlayerPosition1.Size = new System.Drawing.Size(121, 21);
-            this.PlayerPosition1.TabIndex = 82;
             // 
             // editTeam
             // 

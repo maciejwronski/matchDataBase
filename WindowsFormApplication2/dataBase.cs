@@ -98,7 +98,7 @@ namespace WindowsFormsApplication2
         {
             int i = 0;
             string Query = "select * from players where Teams_TeamID = '" + (ListBoxData.SelectedIndex + 1) +"';";
-            Console.WriteLine("select * from players where Teams_TeamID = '" + (ListBoxData.SelectedIndex + 1) + "';");
+            //Console.WriteLine("select * from players where Teams_TeamID = '" + (ListBoxData.SelectedIndex + 1) + "';");
             MySqlCommand Command = new MySqlCommand();
             Command = new MySqlCommand(Query, connection);
             MySqlDataReader mySqlReader;
@@ -110,7 +110,7 @@ namespace WindowsFormsApplication2
                 idBoxes[i].Text = mySqlReader.GetString("PlayerName").ToString();
                 noBoxes[i].Text = mySqlReader.GetInt32("PlayerNumber").ToString();
                 positionBoxes[i].Text = mySqlReader.GetString("Positions_PositionsID").ToString();
-                Console.WriteLine(mySqlReader.GetString("PlayerName").ToString() + " " + mySqlReader.GetInt32("PlayerNumber").ToString() + " " + mySqlReader.GetString("Positions_PositionsID").ToString() + "\n");
+                //Console.WriteLine(mySqlReader.GetString("PlayerName").ToString() + " " + mySqlReader.GetInt32("PlayerNumber").ToString() + " " + mySqlReader.GetString("Positions_PositionsID").ToString() + "\n");
                 i++;
             }
         }
@@ -122,6 +122,18 @@ namespace WindowsFormsApplication2
             {
                 Query = "INSERT into players (PlayerName, PlayerNumber, Teams_TeamID, Positions_PositionsID) VALUES('" + idBoxes[i].Text + "', '" + noBoxes[i].Text + "', '" + lastInsertedId + "', '" + positionBoxes[i].Text + "'); ";
                 sendCommand(Query);
+            }
+        }
+        public void updatePlayers(ListBox ListBoxData, TextBox[] idBoxes, TextBox[] noBoxes, ComboBox[] PositionBoxes)
+        {
+            long getSelectedIndex = (ListBoxData.SelectedIndex + 1);
+            for (int i = 0; i < 11; i++) {
+
+                string updateQuery = "UPDATE players SET PlayerName = '" + idBoxes[i].Text +
+                    "', PlayerNumber = '" + noBoxes[i].Text +
+                    "', Positions_PositionsID = '" + PositionBoxes[i].Text + "' WHERE Teams_TeamID = '" + long.Parse(getSelectedIndex.ToString()) + "' AND PlayerID = " + (getSelectedIndex * 11 + (i+1)-11) + ";";
+                //Console.WriteLine(updateQuery);
+                sendCommand(updateQuery);
             }
         }
     }

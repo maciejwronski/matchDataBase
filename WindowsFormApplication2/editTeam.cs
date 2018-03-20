@@ -66,5 +66,47 @@ namespace WindowsFormsApplication2
                 connectionWithDatabase.CloseConnection();
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if(listBox1.SelectedIndex != -1)
+            {
+                TextBox[] idBoxes = { PlayerID1, PlayerID2, PlayerID3, PlayerID4, PlayerID5, PlayerID6, PlayerID7, PlayerID8, PlayerID9, PlayerID10, PlayerID11 };
+                TextBox[] noBoxes = { PlayerNo1, PlayerNo2, PlayerNo3, PlayerNo4, PlayerNo5, PlayerNo6, PlayerNo7, PlayerNo8, PlayerNo9, PlayerNo10, PlayerNo11 };
+                ComboBox[] positionBoxes = { PlayerPosition1, PlayerPosition2, PlayerPosition3, PlayerPosition4, PlayerPosition5, PlayerPosition6, PlayerPosition7, PlayerPosition8, PlayerPosition9, PlayerPosition10, PlayerPosition11 };
+
+                try
+                {
+                    if (!connectionWithDatabase.isConnected())
+                    {
+                        connectionWithDatabase.OpenConnection();
+                    }
+                    for (int i = 0; i < 11; i++)
+                    {
+                        if (idBoxes[i].Text == "" || noBoxes[i].Text == "" || positionBoxes[i].SelectedItem == null)
+                        {
+                            MessageBox.Show("Error. Boxes cant be empty");
+                            return;
+                        }
+                    }
+                    connectionWithDatabase.updatePlayers(listBox1, idBoxes, noBoxes, positionBoxes);
+                    MessageBox.Show("Zaaktualizowano druzyne " + (listBox1.SelectedIndex+1).ToString() + " pomyslnie");
+                }
+                catch
+                {
+                    MessageBox.Show("Error 404 in adding Team. Check DataBaseConnection");
+                }
+                finally
+                {
+                    connectionWithDatabase.CloseConnection();
+                }
+                for (int i = 0; i < 11; i++)
+                {
+                    idBoxes[i].Text = "";
+                    noBoxes[i].Text = "";
+                    positionBoxes[i].SelectedIndex = -1;
+                }
+            }
+        }
     }
 }
