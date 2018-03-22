@@ -33,7 +33,7 @@ namespace WindowsFormsApplication2
                 {
                     connectionWithDatabase.OpenConnection();
                 }
-                connectionWithDatabase.loadTeamsToListBox(listBox1);
+                connectionWithDatabase.loadTeams(listBox1);
             }
             catch
             {
@@ -56,8 +56,9 @@ namespace WindowsFormsApplication2
                     connectionWithDatabase.OpenConnection();
                 }
                 connectionWithDatabase.loadPlayersToBoxes(listBox1, idBoxes, noBoxes, positionBoxes);
+                Console.WriteLine(listBox1.SelectedValue);
             }
-            catch
+            catch (Exception es)
             {
                 MessageBox.Show("Error 404 in adding Team. Check DataBaseConnection");
             }
@@ -90,7 +91,7 @@ namespace WindowsFormsApplication2
                         }
                     }
                     connectionWithDatabase.updatePlayers(listBox1, idBoxes, noBoxes, positionBoxes);
-                    MessageBox.Show("Zaaktualizowano druzyne " + (listBox1.SelectedIndex+1).ToString() + " pomyslnie");
+                    MessageBox.Show("Zaaktualizowano druzyne " + listBox1.SelectedIndex.ToString() + " pomyslnie");
                 }
                 catch
                 {

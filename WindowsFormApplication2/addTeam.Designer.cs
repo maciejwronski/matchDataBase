@@ -70,6 +70,7 @@
             this.playerHomeNoLabel = new System.Windows.Forms.Label();
             this.teamNameLabel = new System.Windows.Forms.Label();
             this.returnButton = new System.Windows.Forms.Button();
+            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
             this.homeTeamBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -105,6 +106,7 @@
             // 
             // homeTeamBox
             // 
+            this.homeTeamBox.Controls.Add(this.maskedTextBox1);
             this.homeTeamBox.Controls.Add(this.PlayerPosition11);
             this.homeTeamBox.Controls.Add(this.PlayerPosition10);
             this.homeTeamBox.Controls.Add(this.PlayerPosition9);
@@ -395,7 +397,7 @@
             // 
             this.addTeamBox.Location = new System.Drawing.Point(112, 26);
             this.addTeamBox.Name = "addTeamBox";
-            this.addTeamBox.Size = new System.Drawing.Size(188, 20);
+            this.addTeamBox.Size = new System.Drawing.Size(120, 20);
             this.addTeamBox.TabIndex = 58;
             // 
             // PlayerNo11
@@ -516,6 +518,14 @@
             this.returnButton.UseVisualStyleBackColor = true;
             this.returnButton.Click += new System.EventHandler(this.returnButton_Click);
             // 
+            // maskedTextBox1
+            // 
+            this.maskedTextBox1.Location = new System.Drawing.Point(281, 46);
+            this.maskedTextBox1.Mask = "0000\\/0000";
+            this.maskedTextBox1.Name = "maskedTextBox1";
+            this.maskedTextBox1.Size = new System.Drawing.Size(54, 20);
+            this.maskedTextBox1.TabIndex = 20;
+            // 
             // addTeam
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -578,5 +588,6 @@
         private System.Windows.Forms.ComboBox PlayerPosition3;
         private System.Windows.Forms.ComboBox PlayerPosition2;
         private System.Windows.Forms.ComboBox PlayerPosition1;
+        private System.Windows.Forms.MaskedTextBox maskedTextBox1;
     }
 }
