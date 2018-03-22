@@ -181,5 +181,13 @@ namespace WindowsFormsApplication2
             deleteQuery =  "delete from teams where TeamID = ?;";
             sendCommand(deleteQuery,myID);
         }
+        public void AddMatch(MaskedTextBox matchDateBox, MaskedTextBox matchTimeBox, ComboBox competitionID, ComboBox homeTeamComboBox, ComboBox awayTeamComboBox)
+        {
+            string Query = "INSERT into matches(MatchData, MatchTime, Competition_CompetitionName, HomeID_TeamID, Away_TeamID) VALUES (?, ?, ?, ?, ?);";
+            object homeID = homeTeamComboBox.SelectedValue;
+            object awayID = awayTeamComboBox.SelectedValue;
+            sendCommand(Query, matchDateBox.Text, matchTimeBox.Text, competitionID.Text, homeID, awayID);
+
+        }
     }
 }

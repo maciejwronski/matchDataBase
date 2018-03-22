@@ -39,7 +39,7 @@ namespace WindowsFormsApplication2
                 }
                 for (int i=0; i<11; i++)
                 {
-                    if(idBoxes[i].Text == "" || noBoxes[i].Text == "" || addTeamBox.Text == "" || positionBoxes[i].SelectedItem == null)
+                    if(idBoxes[i].Text == "" || noBoxes[i].Text == "" || addTeamBox.Text == "" || positionBoxes[i].SelectedItem == null || !maskedTextBox1.MaskCompleted)
                     {
                         MessageBox.Show("Error. Boxes cant be empty");
                         return;

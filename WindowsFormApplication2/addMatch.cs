@@ -109,5 +109,46 @@ namespace WindowsFormsApplication2
                 connectionWithDatabase.CloseConnection();
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            MaskedTextBox[] goalBoxes = { Goals1Home, Goals2Home, Goals3Home, Goals4Home, Goals5Home, Goals6Home, Goals7Home, Goals8Home, Goals9Home, Goals10Home, Goals11Home };
+            totalHome.Text = sumOfGoals(goalBoxes).ToString();
+            goalBoxes[0] = Goals1Away; goalBoxes[1] = Goals2Away; goalBoxes[2] = Goals3Away; goalBoxes[3] = Goals4Away;
+            goalBoxes[4] = Goals5Away; goalBoxes[5] = Goals6Away; goalBoxes[6] = Goals7Away; goalBoxes[7] = Goals8Away;
+            goalBoxes[8] = Goals9Away; goalBoxes[9] = Goals10Away; goalBoxes[10] = Goals11Away;
+            totalAway.Text = sumOfGoals(goalBoxes).ToString();
+
+            if (MessageBox.Show("Add this match?", "Match Database", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                try
+                {
+                    if (!connectionWithDatabase.isConnected())
+                    {
+                        connectionWithDatabase.OpenConnection();
+                    }
+                    connectionWithDatabase.AddMatch(matchDateBox, matchTimeBox, competitionID, homeTeamComboBox, awayTeamComboBox);
+                }
+                catch
+                {
+                    MessageBox.Show("Error 404 in adding Team. Check DataBaseConnection");
+                }
+                finally
+                {
+                    connectionWithDatabase.CloseConnection();
+                }
+            }
+        }
+        private int sumOfGoals(MaskedTextBox[] boxGoals)
+        {
+            int sum = 0;
+            for(int i=0; i<11; i++)
+            {
+                if (boxGoals[i].Text == "")
+                    boxGoals[i].Text = "0";
+                sum += int.Parse(boxGoals[i].Text);
+            }
+            return sum;
+        }
     }
 }
