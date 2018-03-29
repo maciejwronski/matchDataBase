@@ -112,13 +112,11 @@ namespace WindowsFormsApplication2
 
         private void button1_Click(object sender, EventArgs e)
         {
-            MaskedTextBox[] goalBoxes = { Goals1Home, Goals2Home, Goals3Home, Goals4Home, Goals5Home, Goals6Home, Goals7Home, Goals8Home, Goals9Home, Goals10Home, Goals11Home };
-            totalHome.Text = sumOfGoals(goalBoxes).ToString();
-            goalBoxes[0] = Goals1Away; goalBoxes[1] = Goals2Away; goalBoxes[2] = Goals3Away; goalBoxes[3] = Goals4Away;
-            goalBoxes[4] = Goals5Away; goalBoxes[5] = Goals6Away; goalBoxes[6] = Goals7Away; goalBoxes[7] = Goals8Away;
-            goalBoxes[8] = Goals9Away; goalBoxes[9] = Goals10Away; goalBoxes[10] = Goals11Away;
-            totalAway.Text = sumOfGoals(goalBoxes).ToString();
-
+            MaskedTextBox[] goalBoxesHome = { Goals1Home, Goals2Home, Goals3Home, Goals4Home, Goals5Home, Goals6Home, Goals7Home, Goals8Home, Goals9Home, Goals10Home, Goals11Home };
+            MaskedTextBox[] goalBoxesAway = { Goals1Away, Goals2Away, Goals3Away, Goals4Away, Goals5Away, Goals6Away, Goals7Away, Goals8Away, Goals9Away, Goals10Away, Goals11Away };
+            totalHome.Text = sumOfGoals(goalBoxesHome).ToString();
+     
+            totalAway.Text = sumOfGoals(goalBoxesAway).ToString();
             if (MessageBox.Show("Add this match?", "Match Database", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 try
@@ -127,7 +125,18 @@ namespace WindowsFormsApplication2
                     {
                         connectionWithDatabase.OpenConnection();
                     }
-                    connectionWithDatabase.AddMatch(matchDateBox, matchTimeBox, competitionID, homeTeamComboBox, awayTeamComboBox);
+                    long matchID = connectionWithDatabase.AddMatch(matchDateBox, matchTimeBox, competitionID, homeTeamComboBox, awayTeamComboBox, Winner(totalHome, totalAway));
+                    for(int i=0; i<11; i++)
+                    {
+                        if(goalBoxesHome[i].Text != "0")
+                        {
+                            connectionWithDatabase.addGoalsToPlayer(homeTeamComboBox, i, int.Parse(goalBoxesHome[i].Text), matchID);
+                        }
+                        if (goalBoxesAway[i].Text != "0")
+                        {
+                            connectionWithDatabase.addGoalsToPlayer(awayTeamComboBox, i, int.Parse(goalBoxesAway[i].Text), matchID);
+                        }
+                    }
                 }
                 catch
                 {
@@ -142,13 +151,23 @@ namespace WindowsFormsApplication2
         private int sumOfGoals(MaskedTextBox[] boxGoals)
         {
             int sum = 0;
-            for(int i=0; i<11; i++)
+            for (int i = 0; i < 11; i++)
             {
                 if (boxGoals[i].Text == "")
                     boxGoals[i].Text = "0";
                 sum += int.Parse(boxGoals[i].Text);
             }
             return sum;
+        }
+        private int Winner(TextBox t1, TextBox t2)
+        {
+            if (int.Parse(t1.Text) > int.Parse(t2.Text))
+                return 1;
+            else if (int.Parse(t2.Text) > int.Parse(t1.Text))
+                return 2;
+            else if (int.Parse(t2.Text) == int.Parse(t1.Text))
+                return 0;
+            else return -1;
         }
     }
 }

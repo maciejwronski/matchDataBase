@@ -32,7 +32,7 @@ namespace WindowsFormsApplication2
                 {
                     connectionWithDatabase.OpenConnection();
                 }
-                connectionWithDatabase.loadTeams(listBox1);
+                connectionWithDatabase.loadTeams(deleteTeamListBox);
             }
             catch
             {
@@ -44,7 +44,7 @@ namespace WindowsFormsApplication2
             }
         }
 
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void deleteTeamListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             TextBox[] idBoxes = { PlayerID1, PlayerID2, PlayerID3, PlayerID4, PlayerID5, PlayerID6, PlayerID7, PlayerID8, PlayerID9, PlayerID10, PlayerID11 };
             TextBox[] noBoxes = { PlayerNo1, PlayerNo2, PlayerNo3, PlayerNo4, PlayerNo5, PlayerNo6, PlayerNo7, PlayerNo8, PlayerNo9, PlayerNo10, PlayerNo11 };
@@ -55,8 +55,8 @@ namespace WindowsFormsApplication2
                 {
                     connectionWithDatabase.OpenConnection();
                 }
-                connectionWithDatabase.loadPlayersToBoxes(listBox1, idBoxes, noBoxes, positionBoxes);
-                Console.WriteLine(listBox1.SelectedValue);
+                connectionWithDatabase.loadPlayersToBoxes(deleteTeamListBox, idBoxes, noBoxes, positionBoxes);
+                Console.WriteLine(deleteTeamListBox.SelectedValue);
             }
             catch
             {
@@ -79,7 +79,7 @@ namespace WindowsFormsApplication2
                 {
                     connectionWithDatabase.OpenConnection();
                 }
-                connectionWithDatabase.deleteTeam(listBox1);
+                connectionWithDatabase.deleteTeam(deleteTeamListBox);
             }
             catch
             {

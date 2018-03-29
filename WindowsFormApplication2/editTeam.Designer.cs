@@ -68,7 +68,7 @@
             this.playerHomeNoLabel = new System.Windows.Forms.Label();
             this.playerIdHomeLabel = new System.Windows.Forms.Label();
             this.returnButton = new System.Windows.Forms.Button();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.editTeamListBox = new System.Windows.Forms.ListBox();
             this.label1 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.homeTeamBox.SuspendLayout();
@@ -498,14 +498,14 @@
             this.returnButton.UseVisualStyleBackColor = true;
             this.returnButton.Click += new System.EventHandler(this.returnButton_Click);
             // 
-            // listBox1
+            // editTeamListBox
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(12, 181);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(209, 69);
-            this.listBox1.TabIndex = 21;
-            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            this.editTeamListBox.FormattingEnabled = true;
+            this.editTeamListBox.Location = new System.Drawing.Point(12, 181);
+            this.editTeamListBox.Name = "editTeamListBox";
+            this.editTeamListBox.Size = new System.Drawing.Size(209, 69);
+            this.editTeamListBox.TabIndex = 21;
+            this.editTeamListBox.SelectedIndexChanged += new System.EventHandler(this.editTeamListBox_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -535,7 +535,7 @@
             this.ClientSize = new System.Drawing.Size(784, 661);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.editTeamListBox);
             this.Controls.Add(this.returnButton);
             this.Controls.Add(this.editTeamLabel);
             this.Controls.Add(this.homeTeamBox);
@@ -580,7 +580,7 @@
         private System.Windows.Forms.Label playerHomeNoLabel;
         private System.Windows.Forms.Label playerIdHomeLabel;
         private System.Windows.Forms.Button returnButton;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox editTeamListBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.ComboBox PlayerPosition11;

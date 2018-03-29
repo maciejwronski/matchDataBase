@@ -70,7 +70,7 @@
             this.returnButton = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.deleteTeamListBox = new System.Windows.Forms.ListBox();
             this.homeTeamBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -551,14 +551,14 @@
             this.label1.TabIndex = 72;
             this.label1.Text = "Select Team:";
             // 
-            // listBox1
+            // deleteTeamListBox
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(12, 142);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(209, 69);
-            this.listBox1.TabIndex = 71;
-            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            this.deleteTeamListBox.FormattingEnabled = true;
+            this.deleteTeamListBox.Location = new System.Drawing.Point(12, 142);
+            this.deleteTeamListBox.Name = "deleteTeamListBox";
+            this.deleteTeamListBox.Size = new System.Drawing.Size(209, 69);
+            this.deleteTeamListBox.TabIndex = 71;
+            this.deleteTeamListBox.SelectedIndexChanged += new System.EventHandler(this.deleteTeamListBox_SelectedIndexChanged);
             // 
             // deleteTeam
             // 
@@ -568,7 +568,7 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.returnButton);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.deleteTeamListBox);
             this.Controls.Add(this.homeTeamBox);
             this.Controls.Add(this.deleteTeamLabel);
             this.Name = "deleteTeam";
@@ -614,7 +614,7 @@
         private System.Windows.Forms.Button returnButton;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox deleteTeamListBox;
         private System.Windows.Forms.ComboBox PlayerPosition11;
         private System.Windows.Forms.ComboBox PlayerPosition10;
         private System.Windows.Forms.ComboBox PlayerPosition9;
