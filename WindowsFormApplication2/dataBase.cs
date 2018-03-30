@@ -10,6 +10,31 @@ using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using MySql.Data;
 
+
+// -------------------------------------------------------------------------------------------------------------------
+/*/ Initialize() Initializes connection to Database /*/
+/*/ sendCommand(string command, params object[] p) Sends query with parameters to DB /*/
+/*/ InsertAndReturnCommand(string command, params, object[] p ) Inserts record to database and returns it's ID /*/
+/*/ executeScalar(string command, params object[] p) Sends query and returns variable /*/
+/*/ isConnected() returns TRUE/FALSE, if user is connected to DB /*/
+/*/ OpenConnection() opens Database Connection /*/
+/*/ Close Connection() closes Database Connection /*/
+/*/ loadTeams(ListBox listBoxData) load teams(Name, Given season) from DB to given ListBox /*/
+/*/ loadTeams(ComboBox comboBoxData) load teams(Name, Given Season) from DB to given ComboBox /*/
+/*/ loadMatches(ListBox listBoxData) loads match(Team-Team Date) from DB to ListBox /*/
+/*/ loadMatch(MaskedTextBox dateBox, MaskedTextBox timeBox, ComboBox competitionBox, ListBox mainListBox) loads Date, Time, Competition to textboxes based on selected match /*/
+/*/ loadPlayersToBoxes(object Index, TextBox[] idBoxes, TextBox[] noBoxes, ComboBox[] positionBoxes, MaskedTextBox[] goalsBox, ListBox mainListBox) loads player based on selected match and given team to textboxes./*/
+/*/ LoadPlayersToBoxes(ListBox ListBoxData, TextBox[] idBoxes, TextBox[] noBoxes, ComboBox[] positionBoxes) loads players to given textboxes basen on selected listbox /*/
+/*/ LoadPlayersToBoxes(ComboBox ComboBoxData, TextBox[] idBoxes, TextBox[] noBoxes, ComboBox[] positionBoxes) loads players to given textboxes basen on selected combobox /*/
+/*/ addPlayersToDatabase(TextBox TeamNameBox, MaskedTextBox seasonBox, TextBox[] idBoxes, TextBox[] noBoxes, ComboBox[] positionBoxes) Adds team to DB /*/
+/*/ updatePlayers(ListBox ListBoxData, TextBox[] idBoxes, TextBox[] noBoxes, ComboBox[] PositionBoxes) Updates Team /*/
+/*/ AddMatch(MaskedTextBox matchDateBox, MaskedTextBox matchTimeBox, ComboBox competitionID, ComboBox homeTeamComboBox, ComboBox awayTeamComboBox, int whoWon) Adds played match to database ( Date/Time/Competition/Teams and Winner)/*/
+/*/ addGoalsToPlayer(ComboBox team, int Index, int GoalsScored, long MatchID) adds to specific player his goals in given match /*/
+/*/ returnIdOfTeams(ListBox listBox) returns tab[2] of played teams/*/
+/*/ deleteTeam(Listbox ListBoxData) Deletes team on Listbox.SelectedValue from Database/*/
+// -------------------------------------------------------------------------------------------------------------------
+
+
 namespace WindowsFormsApplication2
 {
     class DBConnect
@@ -24,8 +49,10 @@ namespace WindowsFormsApplication2
         {
             Initialize();
         }
+        /*/ Initialize() Initializes connection to Database /*/
         public void Initialize()
         {
+            login myLogin = new login();
             server = "localhost";
             database = "mydb";
             uid = "root";
@@ -34,9 +61,11 @@ namespace WindowsFormsApplication2
             connectionString = "SERVER=" + server + ";" + "DATABASE=" +
                         database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";" + "Convert Zero Datetime=True" + ";";
 
+            Console.WriteLine(connectionString);
             connection = new MySqlConnection(connectionString);
             OpenConnection();
         }
+        /*/ sendCommand(string command, params object[] p) Sends query with parameters to DB /*/
         public void sendCommand(string command, params object[] p)
         {
             MySqlCommand Command = new MySqlCommand();
@@ -48,6 +77,7 @@ namespace WindowsFormsApplication2
 
             Command.ExecuteNonQuery();
         }
+        /*/ executeScalar(string command, params object[] p) Sends query and returns variable /*/
         public object executeScalar(string command, params object[] p)
         {
             object variable;
@@ -60,6 +90,7 @@ namespace WindowsFormsApplication2
             variable = Command.ExecuteScalar();
             return variable;
         }
+        /*/ InsertAndReturnCommand(string command, params, object[] p ) Inserts record to database and returns it's ID /*/
         public long insertAndReturnCommand(string command, params object[] p)
         {
             MySqlCommand Command = new MySqlCommand();
@@ -69,15 +100,16 @@ namespace WindowsFormsApplication2
                 Command.Parameters.AddWithValue("", item);
             }
             Command.ExecuteNonQuery();
-            return Command.LastInsertedId; // check if inserted??
+            return Command.LastInsertedId;
         }
+        /*/ isConnected() returns TRUE/FALSE, if user is connected to DB /*/
         public bool isConnected()
         {
             if (connection.State == System.Data.ConnectionState.Open)
                 return true;
             else return false;
         }
-        //open connection to database
+        /*/ OpenConnection() opens Database Connection /*/
         public bool OpenConnection()
         {
             try
@@ -90,6 +122,7 @@ namespace WindowsFormsApplication2
                 return false;
             }
         }
+        /*/ CloseConnection() closes Database Connection /*/
         public bool CloseConnection()
         {
             try
@@ -102,6 +135,7 @@ namespace WindowsFormsApplication2
                 return false;
             }
         }
+        /*/ loadTeams(ListBox listBoxData) load teams(Name, Given season) from DB to given ListBox /*/
         public void loadTeams(ListBox listBoxData)
         {
             string Query = "select * from teams;";
@@ -113,6 +147,7 @@ namespace WindowsFormsApplication2
             listBoxData.DisplayMember = "fullTeam";
             listBoxData.ValueMember = "TeamID";
         }
+        /*/ loadTeams(ComboBox ComboBoxData) load teams(Name, Given season) from DB to given ComboBox /*/
         public void loadTeams(ComboBox comboBoxData)
         {
             string Query = "select * from teams;";
@@ -126,6 +161,7 @@ namespace WindowsFormsApplication2
             comboBoxData.ValueMember = "TeamID";
 
         }
+        /*/ loadMatches(ListBox listBoxData) loads match(Team-Team Date) from DB to ListBox /*/
         public void loadMatches(ListBox listBoxData)
         {
 
@@ -140,10 +176,10 @@ namespace WindowsFormsApplication2
             ds.Tables[0].Columns.Remove(ds.Tables[0].Columns["MatchData"]);
             ds.Tables[0].Columns.Add("myMatch", typeof(string), "homeTeam + '-' + awayTeam + ' ' + MatchData2 + ' ' + MatchTime");
             listBoxData.DisplayMember = "myMatch";
-            Console.WriteLine(listBoxData.DisplayMember);
             listBoxData.ValueMember = "MatchID";
             listBoxData.DataSource = ds.Tables[0];
         }
+        /*/ LoadPlayersToBoxes(ListBox ListBoxData, TextBox[] idBoxes, TextBox[] noBoxes, ComboBox[] positionBoxes) loads players to given textboxes basen on selected listbox /*/
         public void loadPlayersToBoxes(ListBox ListBoxData, TextBox[] idBoxes, TextBox[] noBoxes, ComboBox[] positionBoxes)
         {
             int i = 0;
@@ -165,6 +201,7 @@ namespace WindowsFormsApplication2
             }
             mySqlReader.Close();
         }
+        /*/ LoadPlayersToBoxes(ComboBox ComboBoxData, TextBox[] idBoxes, TextBox[] noBoxes, ComboBox[] positionBoxes) loads players to given textboxes basen on selected combobox /*/
         public void loadPlayersToBoxes(ComboBox comboBoxData, TextBox[] idBoxes, TextBox[] noBoxes, ComboBox[] positionBoxes)
         {
             int i = 0;
@@ -186,6 +223,7 @@ namespace WindowsFormsApplication2
             }
             mySqlReader.Close();
         }
+        /*/ loadMatch(MaskedTextBox dateBox, MaskedTextBox timeBox, ComboBox competitionBox, ListBox mainListBox) loads Date, Time, Competition to textboxes based on selected match /*/
         public void loadMatch(MaskedTextBox dateBox, MaskedTextBox timeBox, ComboBox competitionBox, ListBox mainListBox)
         {
             object ID = mainListBox.SelectedValue;
@@ -200,13 +238,21 @@ namespace WindowsFormsApplication2
             competitionBox.Text = executeScalar(Query, ID).ToString();
 
         }
-        public void loadPlayersToBoxes(object Index, TextBox[] idBoxes, TextBox[] noBoxes, ComboBox[] positionBoxes)
+        /*/ loadPlayersToBoxes(object Index, TextBox[] idBoxes, TextBox[] noBoxes, ComboBox[] positionBoxes, MaskedTextBox[] goalsBox, ListBox mainListBox) loads player based on selected match and given team to textboxes./*/
+        public void loadPlayersToBoxes(object Index, TextBox[] idBoxes, TextBox[] noBoxes, ComboBox[] positionBoxes, MaskedTextBox[] goalsBox, ListBox mainListBox)
         {
             int i = 0;
             var myID = Index;
-            string Query = "select * from players where Teams_TeamID = @myID";
+            var matchID = mainListBox.SelectedValue;
+            Console.WriteLine("---- " + matchID);
+            //string Query = "select * from players where Teams_TeamID = @myID";
+            string Query = @"SELECT players.*, gin.GoalsScored, gin.Match_MatchID from players
+                            LEFT JOIN goalsinmatch as gin on players.PlayerID = gin.players_PlayerID 
+                            WHERE players.Teams_TeamID = @myID and Match_MatchiD = @matchID";   ///????????? 
+            Console.WriteLine(Query);
             MySqlCommand Command = new MySqlCommand(Query, connection);
             Command.Parameters.AddWithValue("@myID", myID);
+            Command.Parameters.AddWithValue("@matchID", matchID);
             MySqlDataReader mySqlReader;
             mySqlReader = Command.ExecuteReader();
 
@@ -216,11 +262,12 @@ namespace WindowsFormsApplication2
                 idBoxes[i].Text = mySqlReader.GetString("PlayerName").ToString();
                 noBoxes[i].Text = mySqlReader.GetInt32("PlayerNumber").ToString();
                 positionBoxes[i].Text = mySqlReader.GetString("Positions_PositionsID").ToString();
-
+                goalsBox[i].Text = mySqlReader.GetString("GoalsScored").ToString();
                 i++;
             }
             mySqlReader.Close();
         }
+        /*/ addPlayersToDatabase(TextBox TeamNameBox, MaskedTextBox seasonBox, TextBox[] idBoxes, TextBox[] noBoxes, ComboBox[] positionBoxes) Adds team to DB /*/
         public void addPlayersToDatabase(TextBox TeamNameBox, MaskedTextBox seasonBox, TextBox[] idBoxes, TextBox[] noBoxes, ComboBox[] positionBoxes)
         {
             string Query = "INSERT into teams (Name, season) VALUES(?,  ?);";
@@ -231,6 +278,7 @@ namespace WindowsFormsApplication2
                 sendCommand(Query, idBoxes[i].Text, noBoxes[i].Text, lastInsertedId, positionBoxes[i].Text);
             }
         }
+        /*/ updatePlayers(ListBox ListBoxData, TextBox[] idBoxes, TextBox[] noBoxes, ComboBox[] PositionBoxes) Updates Team /*/
         public void updatePlayers(ListBox ListBoxData, TextBox[] idBoxes, TextBox[] noBoxes, ComboBox[] PositionBoxes)
         {
             int myID = int.Parse(ListBoxData.SelectedValue.ToString());
@@ -241,6 +289,7 @@ namespace WindowsFormsApplication2
                 sendCommand(updateQuery, idBoxes[i].Text, noBoxes[i].Text, PositionBoxes[i].Text, myID, (myID * 11 + i - 10));
             }
         }
+        /*/ deleteTeam(Listbox ListBoxData) Deletes team on Listbox.SelectedValue from Database/*/
         public void deleteTeam(ListBox ListBoxData)
         {
             var myID = ListBoxData.SelectedValue;
@@ -249,6 +298,7 @@ namespace WindowsFormsApplication2
             deleteQuery = "delete from teams where TeamID = ?;";
             sendCommand(deleteQuery, myID);
         }
+        /*/ AddMatch(MaskedTextBox matchDateBox, MaskedTextBox matchTimeBox, ComboBox competitionID, ComboBox homeTeamComboBox, ComboBox awayTeamComboBox, int whoWon) Adds played match to database ( Date/Time/Competition/Teams and Winner)/*/
         public long AddMatch(MaskedTextBox matchDateBox, MaskedTextBox matchTimeBox, ComboBox competitionID, ComboBox homeTeamComboBox, ComboBox awayTeamComboBox, int whoWon)
         {
             string Query = "INSERT into matches(MatchData, MatchTime, Competition_CompetitionName, HomeID_TeamID, Away_TeamID, WinnerID_TeamID) VALUES (?, ?, ?, ?, ?, ?);";
@@ -264,12 +314,14 @@ namespace WindowsFormsApplication2
             long numberOfMatch = insertAndReturnCommand(Query, matchDateBox.Text, matchTimeBox.Text, competitionID.Text, homeID, awayID, Winner);
             return numberOfMatch;
         }
+        /*/ addGoalsToPlayer(ComboBox team, int Index, int GoalsScored, long MatchID) adds to specific player his goals in given match /*/
         public void addGoalsToPlayer(ComboBox team, int Index, int GoalsScored, long MatchID)
         {
             int fixedPlayer = (int.Parse(team.SelectedValue.ToString()) * 11 + Index - 10);
             string Query = "Insert into goalsinmatch(Players_PlayerID, GoalsScored, Match_MatchID) VALUES ( ?,?,?);";
             sendCommand(Query, fixedPlayer, GoalsScored, MatchID);
         }
+        /*/ returnIdOfTeams(ListBox listBox) returns tab[2] of played teams/*/
         public object[] returnIdOfTeams(ListBox listBox)
         {
             object[] dim = new object[2];
@@ -280,6 +332,5 @@ namespace WindowsFormsApplication2
            dim[1] = executeScalar(Query, matchID);
             return dim;
         }
-
     }
 }

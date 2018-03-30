@@ -17,8 +17,6 @@ namespace WindowsFormsApplication2
         {
             InitializeComponent();
             connectionWithDatabase = new DBConnect();
-            if (connectionWithDatabase.isConnected())
-                MessageBox.Show("Connected with database");
         }
 
         private void addTeamButton_Click(object sender, EventArgs e)

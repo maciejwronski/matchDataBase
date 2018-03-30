@@ -128,15 +128,9 @@ namespace WindowsFormsApplication2
                     long matchID = connectionWithDatabase.AddMatch(matchDateBox, matchTimeBox, competitionID, homeTeamComboBox, awayTeamComboBox, Winner(totalHome, totalAway));
                     for(int i=0; i<11; i++)
                     {
-                        if(goalBoxesHome[i].Text != "0")
-                        {
                             connectionWithDatabase.addGoalsToPlayer(homeTeamComboBox, i, int.Parse(goalBoxesHome[i].Text), matchID);
-                        }
-                        if (goalBoxesAway[i].Text != "0")
-                        {
                             connectionWithDatabase.addGoalsToPlayer(awayTeamComboBox, i, int.Parse(goalBoxesAway[i].Text), matchID);
                         }
-                    }
                 }
                 catch
                 {
