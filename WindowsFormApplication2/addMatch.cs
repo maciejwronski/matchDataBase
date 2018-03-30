@@ -130,7 +130,7 @@ namespace WindowsFormsApplication2
                     {
                             connectionWithDatabase.addGoalsToPlayer(homeTeamComboBox, i, int.Parse(goalBoxesHome[i].Text), matchID);
                             connectionWithDatabase.addGoalsToPlayer(awayTeamComboBox, i, int.Parse(goalBoxesAway[i].Text), matchID);
-                        }
+                    }
                 }
                 catch
                 {

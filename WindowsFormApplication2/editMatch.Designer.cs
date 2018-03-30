@@ -1329,11 +1329,10 @@
             // matchDateBox
             // 
             this.matchDateBox.Location = new System.Drawing.Point(150, 13);
-            this.matchDateBox.Mask = "00/00/0000";
+            this.matchDateBox.Mask = "0000-00-00";
             this.matchDateBox.Name = "matchDateBox";
             this.matchDateBox.Size = new System.Drawing.Size(100, 20);
             this.matchDateBox.TabIndex = 10;
-            this.matchDateBox.ValidatingType = typeof(System.DateTime);
             // 
             // matchTimeBox
             // 

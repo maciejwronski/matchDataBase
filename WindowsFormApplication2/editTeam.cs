@@ -56,7 +56,6 @@ namespace WindowsFormsApplication2
                     connectionWithDatabase.OpenConnection();
                 }
                 connectionWithDatabase.loadPlayersToBoxes(editTeamListBox, idBoxes, noBoxes, positionBoxes);
-                Console.WriteLine(editTeamListBox.SelectedValue);
             }
             catch (Exception es)
             {

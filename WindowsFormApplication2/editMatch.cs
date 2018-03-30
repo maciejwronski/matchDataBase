@@ -68,12 +68,12 @@ namespace WindowsFormsApplication2
             }
             catch (Exception es)
             {
-                MessageBox.Show("Error 404 in adding Team. Check DataBaseConnection");
+                MessageBox.Show("Error 404 in adding Team. Check DataBaseConnection \r\n" + es.Message + "\r\n" + es.InnerException.Message);
             }
             finally
             {
 
-               connectionWithDatabase.CloseConnection();
+                connectionWithDatabase.CloseConnection();
             }
 
 
@@ -81,8 +81,52 @@ namespace WindowsFormsApplication2
 
         private void acceptButton_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                if (!connectionWithDatabase.isConnected())
+                {
+                    connectionWithDatabase.OpenConnection();
+                    object[] tab = new object[2];
+                    MaskedTextBox[] GoalsAway = { Goals1Away, Goals2Away, Goals3Away, Goals4Away, Goals5Away, Goals6Away, Goals7Away, Goals8Away, Goals9Away, Goals10Away, Goals11Away };
+                    MaskedTextBox[] GoalsHome = { Goals1Home, Goals2Home, Goals3Home, Goals4Home, Goals5Home, Goals6Home, Goals7Home, Goals8Home, Goals9Home, Goals10Home, Goals11Home };
+                    tab = connectionWithDatabase.returnIdOfTeams(editMatchListBox);
+                    connectionWithDatabase.updateGoalsInMatch(editMatchListBox, GoalsAway, int.Parse(tab[1].ToString()));
+                    connectionWithDatabase.updateGoalsInMatch(editMatchListBox, GoalsHome, int.Parse(tab[0].ToString()));
+                    totalHome.Text = sumOfGoals(GoalsHome).ToString();
+                    totalAway.Text = sumOfGoals(GoalsAway).ToString();
+                    Console.WriteLine(Winner(totalHome, totalAway));
+                    connectionWithDatabase.updateMatch(editMatchListBox, matchDateBox, matchTimeBox, competitionID, Winner(totalHome, totalAway));
+                }
+            }
+            catch (Exception es)
+            {
+                MessageBox.Show("Error 404 in adding Team. Check DataBaseConnection \r\n" + es.Message + "\r\n" + es.InnerException.Message);
+            }
+            finally
+            {
+                connectionWithDatabase.CloseConnection();
+            }
         }
-
+        private int sumOfGoals(MaskedTextBox[] boxGoals)
+        {
+            int sum = 0;
+            for (int i = 0; i < 11; i++)
+            {
+                if (boxGoals[i].Text == "")
+                    boxGoals[i].Text = "0";
+                sum += int.Parse(boxGoals[i].Text);
+            }
+            return sum;
+        }
+        private int Winner(TextBox t1, TextBox t2)
+        {
+            if (int.Parse(t1.Text) > int.Parse(t2.Text))
+                return 1;
+            else if (int.Parse(t2.Text) > int.Parse(t1.Text))
+                return 2;
+            else if (int.Parse(t2.Text) == int.Parse(t1.Text))
+                return 0;
+            else return -1;
+        }
     }
 }

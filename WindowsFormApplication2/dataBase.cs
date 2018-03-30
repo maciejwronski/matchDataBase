@@ -32,6 +32,8 @@ using MySql.Data;
 /*/ addGoalsToPlayer(ComboBox team, int Index, int GoalsScored, long MatchID) adds to specific player his goals in given match /*/
 /*/ returnIdOfTeams(ListBox listBox) returns tab[2] of played teams/*/
 /*/ deleteTeam(Listbox ListBoxData) Deletes team on Listbox.SelectedValue from Database/*/
+/*/ updateMatch(ListBox ListBoxData, MaskedTextBox DateBox, MaskedTextBox TimeBox, ComboBox CompetitionBox) Updates Date, Time, Competition of the match and the winner based on goals /*/
+/*/ updateGoalsInMatch(ListBox ListBoxData, MaskedTextBox[] GoalsBox, int TeamIndex) Updates all goals scored by players /*/
 // -------------------------------------------------------------------------------------------------------------------
 
 
@@ -230,7 +232,7 @@ namespace WindowsFormsApplication2
             DateTime date;
             string Query = "select MatchData from matches WHERE MatchID = ?";
             DateTime.TryParse((executeScalar(Query, ID).ToString()), out date);
-            dateBox.Text = date.ToString();
+            dateBox.Text = date.ToString("yyyy-MM-dd");
             Query = "select MatchTime from matches WHERE MatchID = ?";
             DateTime.TryParse((executeScalar(Query, ID).ToString()), out date);
             timeBox.Text = date.ToString("HH:mm");
@@ -245,11 +247,9 @@ namespace WindowsFormsApplication2
             var myID = Index;
             var matchID = mainListBox.SelectedValue;
             Console.WriteLine("---- " + matchID);
-            //string Query = "select * from players where Teams_TeamID = @myID";
             string Query = @"SELECT players.*, gin.GoalsScored, gin.Match_MatchID from players
                             LEFT JOIN goalsinmatch as gin on players.PlayerID = gin.players_PlayerID 
                             WHERE players.Teams_TeamID = @myID and Match_MatchiD = @matchID";   ///????????? 
-            Console.WriteLine(Query);
             MySqlCommand Command = new MySqlCommand(Query, connection);
             Command.Parameters.AddWithValue("@myID", myID);
             Command.Parameters.AddWithValue("@matchID", matchID);
@@ -331,6 +331,25 @@ namespace WindowsFormsApplication2
            Query = "SELECT Away_TeamID from matches WHERE matchId = ?";
            dim[1] = executeScalar(Query, matchID);
             return dim;
+        }
+        /*/ updateMatch(ListBox ListBoxData, MaskedTextBox DateBox, MaskedTextBox TimeBox, ComboBox CompetitionBox) Updates Date, Time, Competition of the match, and the winner based on goals /*/
+        public void updateMatch(ListBox ListBoxData, MaskedTextBox DateBox, MaskedTextBox TimeBox, ComboBox CompetitionBox, int Winner)
+        {
+            var matchID = ListBoxData.SelectedValue;
+            string QUERY = "UPDATE matches SET Matchdata = ?, MatchTime = ?, Competition_CompetitionName = ?, WinnerID_TeamID = ? where MatchID = ?";
+            sendCommand(QUERY, DateBox.Text, TimeBox.Text, CompetitionBox.Text, Winner, matchID);
+        }
+        /*/ updateGoalsInMatch(ListBox ListBoxData, MaskedTextBox[] GoalsBox, int TeamIndex) Updates all goals scored by players /*/
+        public void updateGoalsInMatch(ListBox ListBoxData, MaskedTextBox[] GoalsBox, int TeamIndex)
+        {
+            var matchID = ListBoxData.SelectedValue;
+            int playerIndex;
+            string QUERY = "UPDATE goalsinmatch SET GoalsScored = ? where Match_MatchID = ? AND Players_PlayerID = ?";
+            for (int i = 0; i < 11; i++)
+            {
+                playerIndex = (TeamIndex * 11 + i - 10);
+                sendCommand(QUERY, GoalsBox[i].Text, matchID, playerIndex);
+            }
         }
     }
 }
