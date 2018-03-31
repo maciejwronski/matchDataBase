@@ -35,9 +35,9 @@ namespace WindowsFormsApplication2
                 }
                 connectionWithDatabase.loadTeams(editTeamListBox);
             }
-            catch
+            catch (Exception es)
             {
-                MessageBox.Show("Error 404 in adding Team. Check DataBaseConnection");
+                MessageBox.Show("Error 404 in adding Team. Check DataBaseConnection \r\n" + es.Message + "\r\n" + es.InnerException.Message);
             }
             finally
             {
@@ -59,7 +59,7 @@ namespace WindowsFormsApplication2
             }
             catch (Exception es)
             {
-                MessageBox.Show("Error 404 in adding Team. Check DataBaseConnection");
+                MessageBox.Show("Error 404 in adding Team. Check DataBaseConnection \r\n" + es.Message + "\r\n" + es.InnerException.Message);
             }
             finally
             {
@@ -77,6 +77,8 @@ namespace WindowsFormsApplication2
 
                 try
                 {
+                    if (MessageBox.Show("Are you sure that you want to edit this team?", "Match Database", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
                     if (!connectionWithDatabase.isConnected())
                     {
                         connectionWithDatabase.OpenConnection();
@@ -90,11 +92,12 @@ namespace WindowsFormsApplication2
                         }
                     }
                     connectionWithDatabase.updatePlayers(editTeamListBox, idBoxes, noBoxes, positionBoxes);
-                    MessageBox.Show("Zaaktualizowano druzyne " + editTeamListBox.SelectedIndex.ToString() + " pomyslnie");
+                    MessageBox.Show("Team " + editTeamListBox.SelectedIndex.ToString() + " has been updated");
+                    }
                 }
-                catch
+                catch (Exception es)
                 {
-                    MessageBox.Show("Error 404 in adding Team. Check DataBaseConnection");
+                    MessageBox.Show("Error 404 in adding Team. Check DataBaseConnection \r\n" + es.Message + "\r\n" + es.InnerException.Message);
                 }
                 finally
                 {

@@ -34,9 +34,9 @@ namespace WindowsFormsApplication2
                 }
                 connectionWithDatabase.loadTeams(deleteTeamListBox);
             }
-            catch
+            catch (Exception es)
             {
-                MessageBox.Show("Error 404 in adding Team. Check DataBaseConnection");
+                MessageBox.Show("Error 404 in adding Team. Check DataBaseConnection \r\n" + es.Message + "\r\n" + es.InnerException.Message);
             }
             finally
             {
@@ -56,11 +56,10 @@ namespace WindowsFormsApplication2
                     connectionWithDatabase.OpenConnection();
                 }
                 connectionWithDatabase.loadPlayersToBoxes(deleteTeamListBox, idBoxes, noBoxes, positionBoxes);
-                Console.WriteLine(deleteTeamListBox.SelectedValue);
             }
-            catch
+            catch (Exception es)
             {
-                MessageBox.Show("Error 404 in adding Team. Check DataBaseConnection");
+                MessageBox.Show("Error 404 in adding Team. Check DataBaseConnection \r\n" + es.Message + "\r\n" + es.InnerException.Message);
             }
             finally
             {
@@ -75,15 +74,20 @@ namespace WindowsFormsApplication2
             ComboBox[] positionBoxes = { PlayerPosition1, PlayerPosition2, PlayerPosition3, PlayerPosition4, PlayerPosition5, PlayerPosition6, PlayerPosition7, PlayerPosition8, PlayerPosition9, PlayerPosition10, PlayerPosition11 };
             try
             {
-                if (!connectionWithDatabase.isConnected())
+                if (MessageBox.Show("Are you sure, that you want to delete this team?", "Match Database", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    connectionWithDatabase.OpenConnection();
+                    if (!connectionWithDatabase.isConnected())
+                    {
+                        connectionWithDatabase.OpenConnection();
+                    }
+                    connectionWithDatabase.deleteTeam(deleteTeamListBox);
+                    MessageBox.Show("Succesfully removed this team.");
                 }
-                connectionWithDatabase.deleteTeam(deleteTeamListBox);
+
             }
-            catch
+            catch (Exception es)
             {
-                MessageBox.Show("Error 404 in adding Team. Check DataBaseConnection");
+                MessageBox.Show("Error 404 in adding Team. Check DataBaseConnection \r\n" + es.Message + "\r\n" + es.InnerException.Message);
             }
             finally
             {
@@ -95,7 +99,6 @@ namespace WindowsFormsApplication2
                 noBoxes[i].Text = "";
                 positionBoxes[i].SelectedIndex = -1;
             }
-            MessageBox.Show("Successfully deleted team");
         }
     }
   

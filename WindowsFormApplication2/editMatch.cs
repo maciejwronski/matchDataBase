@@ -33,9 +33,9 @@ namespace WindowsFormsApplication2
                 }
                 connectionWithDatabase.loadMatches(editMatchListBox);
             }
-            catch
+            catch (Exception es)
             {
-                MessageBox.Show("Error 404 in adding Team. Check DataBaseConnection");
+                MessageBox.Show("Error 404 in adding Team. Check DataBaseConnection \r\n" + es.Message + "\r\n" + es.InnerException.Message);
             }
             finally
             {
@@ -60,7 +60,6 @@ namespace WindowsFormsApplication2
                     connectionWithDatabase.OpenConnection();
                     object[] tab = new object[2];
                     tab = connectionWithDatabase.returnIdOfTeams(editMatchListBox);
-                    //Console.WriteLine(tab[1]);
                     connectionWithDatabase.loadMatch(matchDateBox, matchTimeBox, competitionID, editMatchListBox);
                     connectionWithDatabase.loadPlayersToBoxes(tab[0], idBoxesHome, noBoxesHome, positionBoxesHome, goalBoxesHome, editMatchListBox);
                     connectionWithDatabase.loadPlayersToBoxes(tab[1], idBoxesAway, noBoxesAway, positionBoxesAway, goalBoxesAway, editMatchListBox);
@@ -83,19 +82,23 @@ namespace WindowsFormsApplication2
         {
             try
             {
-                if (!connectionWithDatabase.isConnected())
+                if (MessageBox.Show("Are you sure, that you want to edit this match?", "Match Database", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    connectionWithDatabase.OpenConnection();
-                    object[] tab = new object[2];
-                    MaskedTextBox[] GoalsAway = { Goals1Away, Goals2Away, Goals3Away, Goals4Away, Goals5Away, Goals6Away, Goals7Away, Goals8Away, Goals9Away, Goals10Away, Goals11Away };
-                    MaskedTextBox[] GoalsHome = { Goals1Home, Goals2Home, Goals3Home, Goals4Home, Goals5Home, Goals6Home, Goals7Home, Goals8Home, Goals9Home, Goals10Home, Goals11Home };
-                    tab = connectionWithDatabase.returnIdOfTeams(editMatchListBox);
-                    connectionWithDatabase.updateGoalsInMatch(editMatchListBox, GoalsAway, int.Parse(tab[1].ToString()));
-                    connectionWithDatabase.updateGoalsInMatch(editMatchListBox, GoalsHome, int.Parse(tab[0].ToString()));
-                    totalHome.Text = sumOfGoals(GoalsHome).ToString();
-                    totalAway.Text = sumOfGoals(GoalsAway).ToString();
-                    Console.WriteLine(Winner(totalHome, totalAway));
-                    connectionWithDatabase.updateMatch(editMatchListBox, matchDateBox, matchTimeBox, competitionID, Winner(totalHome, totalAway));
+                    if (!connectionWithDatabase.isConnected())
+                    {
+                        connectionWithDatabase.OpenConnection();
+                    }
+                    {
+                        object[] tab = new object[2];
+                        MaskedTextBox[] GoalsAway = { Goals1Away, Goals2Away, Goals3Away, Goals4Away, Goals5Away, Goals6Away, Goals7Away, Goals8Away, Goals9Away, Goals10Away, Goals11Away };
+                        MaskedTextBox[] GoalsHome = { Goals1Home, Goals2Home, Goals3Home, Goals4Home, Goals5Home, Goals6Home, Goals7Home, Goals8Home, Goals9Home, Goals10Home, Goals11Home };
+                        tab = connectionWithDatabase.returnIdOfTeams(editMatchListBox);
+                        connectionWithDatabase.updateGoalsInMatch(editMatchListBox, GoalsAway, int.Parse(tab[1].ToString()));
+                        connectionWithDatabase.updateGoalsInMatch(editMatchListBox, GoalsHome, int.Parse(tab[0].ToString()));
+                        totalHome.Text = sumOfGoals(GoalsHome).ToString();
+                        totalAway.Text = sumOfGoals(GoalsAway).ToString();
+                        connectionWithDatabase.updateMatch(editMatchListBox, matchDateBox, matchTimeBox, competitionID, Winner(totalHome, totalAway));
+                    }
                 }
             }
             catch (Exception es)

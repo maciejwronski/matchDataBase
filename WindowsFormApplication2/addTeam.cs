@@ -46,23 +46,23 @@ namespace WindowsFormsApplication2
                     }
                 }
                 connectionWithDatabase.addPlayersToDatabase(addTeamBox, maskedTextBox1,idBoxes, noBoxes, positionBoxes);
-                MessageBox.Show("Dodano druzyne " + addTeamBox.Text + " pomyslnie");
+                MessageBox.Show("Team " + addTeamBox.Text + " has been added.");
             }
             catch (Exception es)
             {
-                MessageBox.Show("Error 404 in adding Team. Check DataBaseConnection \r\n"+es.Message+"\r\n"+es.InnerException.Message);
+                MessageBox.Show("Error 404 in adding Team. Check DataBaseConnection \r\n" + es.Message + "\r\n" + es.InnerException.Message);
             }
             finally
             {
                 connectionWithDatabase.CloseConnection();
             }
-/*/            addTeamBox.Text = "";
+            addTeamBox.Text = "";
             for (int i = 0; i < 11; i++)
             {
                 idBoxes[i].Text = "";
                 noBoxes[i].Text = "";
                 positionBoxes[i].SelectedIndex = -1;
-            }/*/
+            }
         }
     }
 }

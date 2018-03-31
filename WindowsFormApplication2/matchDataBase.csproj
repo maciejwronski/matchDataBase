@@ -93,7 +93,6 @@
     <Compile Include="editTeam.Designer.cs">
       <DependentUpon>editTeam.cs</DependentUpon>
     </Compile>
-    <Compile Include="Format.cs" />
     <Compile Include="login.cs">
       <SubType>Form</SubType>
     </Compile>

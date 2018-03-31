@@ -34,6 +34,8 @@ using MySql.Data;
 /*/ deleteTeam(Listbox ListBoxData) Deletes team on Listbox.SelectedValue from Database/*/
 /*/ updateMatch(ListBox ListBoxData, MaskedTextBox DateBox, MaskedTextBox TimeBox, ComboBox CompetitionBox) Updates Date, Time, Competition of the match and the winner based on goals /*/
 /*/ updateGoalsInMatch(ListBox ListBoxData, MaskedTextBox[] GoalsBox, int TeamIndex) Updates all goals scored by players /*/
+
+   // on delete cascaede?
 // -------------------------------------------------------------------------------------------------------------------
 
 
@@ -56,14 +58,14 @@ namespace WindowsFormsApplication2
         {
             login myLogin = new login();
             server = "localhost";
-            database = "mydb";
+            database = "matchdatabase";
             uid = "root";
             password = "";
             string connectionString;
             connectionString = "SERVER=" + server + ";" + "DATABASE=" +
                         database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";" + "Convert Zero Datetime=True" + ";";
 
-            Console.WriteLine(connectionString);
+
             connection = new MySqlConnection(connectionString);
             OpenConnection();
         }
@@ -169,7 +171,7 @@ namespace WindowsFormsApplication2
 
             string Query = @"select matches.*, cast(matchdata as char) as MatchData2,
                             T1.name as homeTeam, T2.name as AwayTeam from matches 
-                            LEFT JOIN teams as T1 ON T1.TeamID = HomeID_TeamID
+                            LEFT JOIN teams as T1 ON T1.TeamID = Home_TeamID
                             LEFT JOIN teams as T2 ON T2.TeamID = Away_TeamID";
             DataSet ds = new DataSet();
 
@@ -246,7 +248,6 @@ namespace WindowsFormsApplication2
             int i = 0;
             var myID = Index;
             var matchID = mainListBox.SelectedValue;
-            Console.WriteLine("---- " + matchID);
             string Query = @"SELECT players.*, gin.GoalsScored, gin.Match_MatchID from players
                             LEFT JOIN goalsinmatch as gin on players.PlayerID = gin.players_PlayerID 
                             WHERE players.Teams_TeamID = @myID and Match_MatchiD = @matchID";   ///????????? 
@@ -293,15 +294,18 @@ namespace WindowsFormsApplication2
         public void deleteTeam(ListBox ListBoxData)
         {
             var myID = ListBoxData.SelectedValue;
+            string foreign = "SET FOREIGN_KEY_CHECKS=?;";
+            sendCommand(foreign, 0);
             string deleteQuery = "Delete from players where Teams_TeamID = ?;";
             sendCommand(deleteQuery, myID);
             deleteQuery = "delete from teams where TeamID = ?;";
             sendCommand(deleteQuery, myID);
+            sendCommand(foreign, 1);
         }
         /*/ AddMatch(MaskedTextBox matchDateBox, MaskedTextBox matchTimeBox, ComboBox competitionID, ComboBox homeTeamComboBox, ComboBox awayTeamComboBox, int whoWon) Adds played match to database ( Date/Time/Competition/Teams and Winner)/*/
         public long AddMatch(MaskedTextBox matchDateBox, MaskedTextBox matchTimeBox, ComboBox competitionID, ComboBox homeTeamComboBox, ComboBox awayTeamComboBox, int whoWon)
         {
-            string Query = "INSERT into matches(MatchData, MatchTime, Competition_CompetitionName, HomeID_TeamID, Away_TeamID, WinnerID_TeamID) VALUES (?, ?, ?, ?, ?, ?);";
+            string Query = "INSERT into matches(MatchData, MatchTime, Competition_CompetitionName, Home_TeamID, Away_TeamID, Winner_TeamID) VALUES (?, ?, ?, ?, ?, ?);";
             object homeID = homeTeamComboBox.SelectedValue;
             object awayID = awayTeamComboBox.SelectedValue;
             object Winner = 0;
@@ -326,7 +330,7 @@ namespace WindowsFormsApplication2
         {
             object[] dim = new object[2];
             object matchID = listBox.SelectedValue;
-            string Query = "SELECT HomeID_TeamID from matches WHERE matchId = ?";
+            string Query = "SELECT Home_TeamID from matches WHERE matchId = ?";
             dim[0] = executeScalar(Query, matchID);
            Query = "SELECT Away_TeamID from matches WHERE matchId = ?";
            dim[1] = executeScalar(Query, matchID);
@@ -336,7 +340,7 @@ namespace WindowsFormsApplication2
         public void updateMatch(ListBox ListBoxData, MaskedTextBox DateBox, MaskedTextBox TimeBox, ComboBox CompetitionBox, int Winner)
         {
             var matchID = ListBoxData.SelectedValue;
-            string QUERY = "UPDATE matches SET Matchdata = ?, MatchTime = ?, Competition_CompetitionName = ?, WinnerID_TeamID = ? where MatchID = ?";
+            string QUERY = "UPDATE matches SET Matchdata = ?, MatchTime = ?, Competition_CompetitionName = ?, Winner_TeamID = ? where MatchID = ?";
             sendCommand(QUERY, DateBox.Text, TimeBox.Text, CompetitionBox.Text, Winner, matchID);
         }
         /*/ updateGoalsInMatch(ListBox ListBoxData, MaskedTextBox[] GoalsBox, int TeamIndex) Updates all goals scored by players /*/
@@ -350,6 +354,11 @@ namespace WindowsFormsApplication2
                 playerIndex = (TeamIndex * 11 + i - 10);
                 sendCommand(QUERY, GoalsBox[i].Text, matchID, playerIndex);
             }
+        }
+        public void removeMatch(ListBox ListBoxData)
+        {
+            string Query = "Delete from matches where MatchID = ?";
+            sendCommand(Query, ListBoxData.SelectedValue);
         }
     }
 }

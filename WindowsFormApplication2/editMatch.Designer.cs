@@ -1399,7 +1399,7 @@
             this.buttonLoadTeams.Name = "buttonLoadTeams";
             this.buttonLoadTeams.Size = new System.Drawing.Size(75, 23);
             this.buttonLoadTeams.TabIndex = 19;
-            this.buttonLoadTeams.Text = "Load Teams";
+            this.buttonLoadTeams.Text = "Load Matches";
             this.buttonLoadTeams.UseVisualStyleBackColor = true;
             this.buttonLoadTeams.Click += new System.EventHandler(this.buttonLoadTeams_Click);
             // 
