@@ -332,8 +332,8 @@ namespace WindowsFormsApplication2
             object matchID = listBox.SelectedValue;
             string Query = "SELECT Home_TeamID from matches WHERE matchId = ?";
             dim[0] = executeScalar(Query, matchID);
-           Query = "SELECT Away_TeamID from matches WHERE matchId = ?";
-           dim[1] = executeScalar(Query, matchID);
+            Query = "SELECT Away_TeamID from matches WHERE matchId = ?";
+            dim[1] = executeScalar(Query, matchID);
             return dim;
         }
         /*/ updateMatch(ListBox ListBoxData, MaskedTextBox DateBox, MaskedTextBox TimeBox, ComboBox CompetitionBox) Updates Date, Time, Competition of the match, and the winner based on goals /*/
@@ -355,10 +355,48 @@ namespace WindowsFormsApplication2
                 sendCommand(QUERY, GoalsBox[i].Text, matchID, playerIndex);
             }
         }
+        /*/  removeMatch(ListBox ListBoxData) Removes selected match from database /*/
         public void removeMatch(ListBox ListBoxData)
         {
             string Query = "Delete from matches where MatchID = ?";
             sendCommand(Query, ListBoxData.SelectedValue);
+        }
+        public void searchFor(DataGridView DataGrid, int Index)
+        {
+            string Query;
+            switch (Index)
+            {
+                case 1: Query = @"select MatchID, MatchData as Date, MatchTime as Time, T1.name as Home_Team, T2.name as Away_Team , T3.name as Winner from matches 
+                                 LEFT JOIN teams as T1 on T1.TeamID = Home_TeamID
+                                 LEFT JOIN teams as T2 on T2.TeamID = Away_TeamID
+                                 LEFT JOIN teams as T3 on T3.TeamID = Winner_TeamID
+                                 WHERE T1.name = ? AND T2.name = ? ORDER BY MatchData; "; break;
+                case 2: Query = @"select MatchID, MatchData as Date, MatchTime as Time , T1.name as Home_Team, T2.name as Away_Team , T3.name as Winner from matches 
+                                  LEFT JOIN teams as T1 on T1.TeamID = Home_TeamID
+                                  LEFT JOIN teams as T2 on T2.TeamID = Away_TeamID
+                                  LEFT JOIN teams as T3 on T3.TeamID = Winner_TeamID
+                                  WHERE MatchData = ? ORDER BY MatchTime;"; break;
+                case 3: Query = @"select MatchID, MatchData as Date, MatchTime as Time, T1.name as Home_Team, T2.name as Away_Team , T3.name as Winner from matches 
+                                  LEFT JOIN teams as T1 on T1.TeamID = Home_TeamID
+                                  LEFT JOIN teams as T2 on T2.TeamID = Away_TeamID
+                                  LEFT JOIN teams as T3 on T3.TeamID = Winner_TeamID
+                                  WHERE (Competition_CompetitionName = ? OR ? = 'None') ORDER BY MatchData; "; break;
+                case 4: Query = @"select tm.name as 'Team Name', sum(goalsScored) as 'Total Goals' from goalsinmatch 
+                                  LEFT JOIN players as pl ON Players_PlayerID = pl.PlayerID
+                                  LEFT JOIN teams as tm ON pl.Teams_TeamID = tm.TeamID 
+                                  LEFT JOIN matches as m ON m.MatchID = Match_MatchID
+                                  where GoalsScored != 0 AND (m.Competition_CompetitionName = ? OR ? = 'None') GROUP by tm.Name;"; break;
+                case 5: Query = @"select Pl.PlayerName as 'Name', pl.PlayerNumber as 'Number', Pl.Positions_PositionsID as 'Position', tm.Name as 'Team Name', sum(goalsScored) as Goals from goalsinmatch 
+                                  LEFT JOIN players as pl ON Players_PlayerID = pl.PlayerID
+                                  LEFT JOIN teams as tm ON pl.Teams_TeamID = tm.TeamID 
+                                  LEFT JOIN matches as m ON m.MatchID = Match_MatchID
+                                  where GoalsScored != 0 AND (m.Competition_CompetitionName = ? OR ? = 'None') AND (m.Competition_CompetitionName = ? OR ? = 'None') GROUP by Players_Playerid ORDER BY Goals"; break;
+            }
+        }
+        public void searchFor(DataGridView DataGrid, string Query)
+        {
+
+
         }
     }
 }

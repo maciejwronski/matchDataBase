@@ -132,7 +132,7 @@
             this.SearchForMatchButton.Name = "SearchForMatchButton";
             this.SearchForMatchButton.Size = new System.Drawing.Size(131, 106);
             this.SearchForMatchButton.TabIndex = 10;
-            this.SearchForMatchButton.Text = "Search for a Match";
+            this.SearchForMatchButton.Text = "Search Tool";
             this.SearchForMatchButton.UseVisualStyleBackColor = true;
             this.SearchForMatchButton.Click += new System.EventHandler(this.SearchForMatchButton_Click);
             // 

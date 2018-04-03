@@ -41,6 +41,17 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.homeTeamBox = new System.Windows.Forms.GroupBox();
+            this.Goals11Home = new System.Windows.Forms.MaskedTextBox();
+            this.Goals10Home = new System.Windows.Forms.MaskedTextBox();
+            this.Goals9Home = new System.Windows.Forms.MaskedTextBox();
+            this.Goals8Home = new System.Windows.Forms.MaskedTextBox();
+            this.Goals7Home = new System.Windows.Forms.MaskedTextBox();
+            this.Goals6Home = new System.Windows.Forms.MaskedTextBox();
+            this.Goals5Home = new System.Windows.Forms.MaskedTextBox();
+            this.Goals4Home = new System.Windows.Forms.MaskedTextBox();
+            this.Goals3Home = new System.Windows.Forms.MaskedTextBox();
+            this.Goals2Home = new System.Windows.Forms.MaskedTextBox();
+            this.Goals1Home = new System.Windows.Forms.MaskedTextBox();
             this.PlayerPosition11Home = new System.Windows.Forms.ComboBox();
             this.PlayerPosition10Home = new System.Windows.Forms.ComboBox();
             this.PlayerPosition9Home = new System.Windows.Forms.ComboBox();
@@ -83,15 +94,26 @@
             this.playerIdHomeLabel = new System.Windows.Forms.Label();
             this.homeTeamLabel = new System.Windows.Forms.Label();
             this.awayTeamBox = new System.Windows.Forms.GroupBox();
+            this.Goals11Away = new System.Windows.Forms.MaskedTextBox();
             this.PlayerPosition11Away = new System.Windows.Forms.ComboBox();
+            this.Goals10Away = new System.Windows.Forms.MaskedTextBox();
             this.PlayerPosition10Away = new System.Windows.Forms.ComboBox();
+            this.Goals9Away = new System.Windows.Forms.MaskedTextBox();
             this.PlayerPosition9Away = new System.Windows.Forms.ComboBox();
+            this.Goals8Away = new System.Windows.Forms.MaskedTextBox();
             this.PlayerPosition8Away = new System.Windows.Forms.ComboBox();
+            this.Goals7Away = new System.Windows.Forms.MaskedTextBox();
             this.PlayerPosition7Away = new System.Windows.Forms.ComboBox();
+            this.Goals6Away = new System.Windows.Forms.MaskedTextBox();
             this.PlayerPosition6Away = new System.Windows.Forms.ComboBox();
+            this.Goals5Away = new System.Windows.Forms.MaskedTextBox();
             this.PlayerPosition5Away = new System.Windows.Forms.ComboBox();
+            this.Goals4Away = new System.Windows.Forms.MaskedTextBox();
+            this.Goals3Away = new System.Windows.Forms.MaskedTextBox();
             this.PlayerPosition4Away = new System.Windows.Forms.ComboBox();
+            this.Goals2Away = new System.Windows.Forms.MaskedTextBox();
             this.PlayerPosition3Away = new System.Windows.Forms.ComboBox();
+            this.Goals1Away = new System.Windows.Forms.MaskedTextBox();
             this.PlayerPosition2Away = new System.Windows.Forms.ComboBox();
             this.PlayerPosition1Away = new System.Windows.Forms.ComboBox();
             this.PlayerID11Away = new System.Windows.Forms.TextBox();
@@ -125,28 +147,6 @@
             this.playerAwayNoLabel = new System.Windows.Forms.Label();
             this.PlayerIdAwayLabel = new System.Windows.Forms.Label();
             this.addMatchLabel = new System.Windows.Forms.Label();
-            this.Goals1Home = new System.Windows.Forms.MaskedTextBox();
-            this.Goals2Home = new System.Windows.Forms.MaskedTextBox();
-            this.Goals4Home = new System.Windows.Forms.MaskedTextBox();
-            this.Goals3Home = new System.Windows.Forms.MaskedTextBox();
-            this.Goals8Home = new System.Windows.Forms.MaskedTextBox();
-            this.Goals7Home = new System.Windows.Forms.MaskedTextBox();
-            this.Goals6Home = new System.Windows.Forms.MaskedTextBox();
-            this.Goals5Home = new System.Windows.Forms.MaskedTextBox();
-            this.Goals11Home = new System.Windows.Forms.MaskedTextBox();
-            this.Goals10Home = new System.Windows.Forms.MaskedTextBox();
-            this.Goals9Home = new System.Windows.Forms.MaskedTextBox();
-            this.Goals11Away = new System.Windows.Forms.MaskedTextBox();
-            this.Goals10Away = new System.Windows.Forms.MaskedTextBox();
-            this.Goals9Away = new System.Windows.Forms.MaskedTextBox();
-            this.Goals8Away = new System.Windows.Forms.MaskedTextBox();
-            this.Goals7Away = new System.Windows.Forms.MaskedTextBox();
-            this.Goals6Away = new System.Windows.Forms.MaskedTextBox();
-            this.Goals5Away = new System.Windows.Forms.MaskedTextBox();
-            this.Goals4Away = new System.Windows.Forms.MaskedTextBox();
-            this.Goals3Away = new System.Windows.Forms.MaskedTextBox();
-            this.Goals2Away = new System.Windows.Forms.MaskedTextBox();
-            this.Goals1Away = new System.Windows.Forms.MaskedTextBox();
             this.matchBox.SuspendLayout();
             this.teamBox.SuspendLayout();
             this.homeTeamBox.SuspendLayout();
@@ -336,6 +336,105 @@
             this.homeTeamBox.Size = new System.Drawing.Size(350, 467);
             this.homeTeamBox.TabIndex = 11;
             this.homeTeamBox.TabStop = false;
+            // 
+            // Goals11Home
+            // 
+            this.Goals11Home.Location = new System.Drawing.Point(306, 364);
+            this.Goals11Home.Mask = "00";
+            this.Goals11Home.Name = "Goals11Home";
+            this.Goals11Home.PromptChar = ' ';
+            this.Goals11Home.Size = new System.Drawing.Size(33, 20);
+            this.Goals11Home.TabIndex = 180;
+            // 
+            // Goals10Home
+            // 
+            this.Goals10Home.Location = new System.Drawing.Point(306, 338);
+            this.Goals10Home.Mask = "00";
+            this.Goals10Home.Name = "Goals10Home";
+            this.Goals10Home.PromptChar = ' ';
+            this.Goals10Home.Size = new System.Drawing.Size(33, 20);
+            this.Goals10Home.TabIndex = 179;
+            // 
+            // Goals9Home
+            // 
+            this.Goals9Home.Location = new System.Drawing.Point(306, 312);
+            this.Goals9Home.Mask = "00";
+            this.Goals9Home.Name = "Goals9Home";
+            this.Goals9Home.PromptChar = ' ';
+            this.Goals9Home.Size = new System.Drawing.Size(33, 20);
+            this.Goals9Home.TabIndex = 178;
+            // 
+            // Goals8Home
+            // 
+            this.Goals8Home.Location = new System.Drawing.Point(306, 286);
+            this.Goals8Home.Mask = "00";
+            this.Goals8Home.Name = "Goals8Home";
+            this.Goals8Home.PromptChar = ' ';
+            this.Goals8Home.Size = new System.Drawing.Size(33, 20);
+            this.Goals8Home.TabIndex = 177;
+            // 
+            // Goals7Home
+            // 
+            this.Goals7Home.Location = new System.Drawing.Point(306, 260);
+            this.Goals7Home.Mask = "00";
+            this.Goals7Home.Name = "Goals7Home";
+            this.Goals7Home.PromptChar = ' ';
+            this.Goals7Home.Size = new System.Drawing.Size(33, 20);
+            this.Goals7Home.TabIndex = 176;
+            // 
+            // Goals6Home
+            // 
+            this.Goals6Home.Location = new System.Drawing.Point(306, 234);
+            this.Goals6Home.Mask = "00";
+            this.Goals6Home.Name = "Goals6Home";
+            this.Goals6Home.PromptChar = ' ';
+            this.Goals6Home.Size = new System.Drawing.Size(33, 20);
+            this.Goals6Home.TabIndex = 175;
+            // 
+            // Goals5Home
+            // 
+            this.Goals5Home.Location = new System.Drawing.Point(306, 207);
+            this.Goals5Home.Mask = "00";
+            this.Goals5Home.Name = "Goals5Home";
+            this.Goals5Home.PromptChar = ' ';
+            this.Goals5Home.Size = new System.Drawing.Size(33, 20);
+            this.Goals5Home.TabIndex = 174;
+            // 
+            // Goals4Home
+            // 
+            this.Goals4Home.Location = new System.Drawing.Point(306, 181);
+            this.Goals4Home.Mask = "00";
+            this.Goals4Home.Name = "Goals4Home";
+            this.Goals4Home.PromptChar = ' ';
+            this.Goals4Home.Size = new System.Drawing.Size(33, 20);
+            this.Goals4Home.TabIndex = 173;
+            // 
+            // Goals3Home
+            // 
+            this.Goals3Home.Location = new System.Drawing.Point(306, 155);
+            this.Goals3Home.Mask = "00";
+            this.Goals3Home.Name = "Goals3Home";
+            this.Goals3Home.PromptChar = ' ';
+            this.Goals3Home.Size = new System.Drawing.Size(33, 20);
+            this.Goals3Home.TabIndex = 172;
+            // 
+            // Goals2Home
+            // 
+            this.Goals2Home.Location = new System.Drawing.Point(306, 127);
+            this.Goals2Home.Mask = "00";
+            this.Goals2Home.Name = "Goals2Home";
+            this.Goals2Home.PromptChar = ' ';
+            this.Goals2Home.Size = new System.Drawing.Size(33, 20);
+            this.Goals2Home.TabIndex = 171;
+            // 
+            // Goals1Home
+            // 
+            this.Goals1Home.Location = new System.Drawing.Point(306, 100);
+            this.Goals1Home.Mask = "00";
+            this.Goals1Home.Name = "Goals1Home";
+            this.Goals1Home.PromptChar = ' ';
+            this.Goals1Home.Size = new System.Drawing.Size(33, 20);
+            this.Goals1Home.TabIndex = 170;
             // 
             // PlayerPosition11Home
             // 
@@ -816,6 +915,15 @@
             this.awayTeamBox.TabIndex = 0;
             this.awayTeamBox.TabStop = false;
             // 
+            // Goals11Away
+            // 
+            this.Goals11Away.Location = new System.Drawing.Point(312, 364);
+            this.Goals11Away.Mask = "00";
+            this.Goals11Away.Name = "Goals11Away";
+            this.Goals11Away.PromptChar = ' ';
+            this.Goals11Away.Size = new System.Drawing.Size(33, 20);
+            this.Goals11Away.TabIndex = 191;
+            // 
             // PlayerPosition11Away
             // 
             this.PlayerPosition11Away.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -830,6 +938,15 @@
             this.PlayerPosition11Away.Name = "PlayerPosition11Away";
             this.PlayerPosition11Away.Size = new System.Drawing.Size(121, 21);
             this.PlayerPosition11Away.TabIndex = 169;
+            // 
+            // Goals10Away
+            // 
+            this.Goals10Away.Location = new System.Drawing.Point(312, 338);
+            this.Goals10Away.Mask = "00";
+            this.Goals10Away.Name = "Goals10Away";
+            this.Goals10Away.PromptChar = ' ';
+            this.Goals10Away.Size = new System.Drawing.Size(33, 20);
+            this.Goals10Away.TabIndex = 190;
             // 
             // PlayerPosition10Away
             // 
@@ -846,6 +963,15 @@
             this.PlayerPosition10Away.Size = new System.Drawing.Size(121, 21);
             this.PlayerPosition10Away.TabIndex = 168;
             // 
+            // Goals9Away
+            // 
+            this.Goals9Away.Location = new System.Drawing.Point(312, 312);
+            this.Goals9Away.Mask = "00";
+            this.Goals9Away.Name = "Goals9Away";
+            this.Goals9Away.PromptChar = ' ';
+            this.Goals9Away.Size = new System.Drawing.Size(33, 20);
+            this.Goals9Away.TabIndex = 189;
+            // 
             // PlayerPosition9Away
             // 
             this.PlayerPosition9Away.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -860,6 +986,15 @@
             this.PlayerPosition9Away.Name = "PlayerPosition9Away";
             this.PlayerPosition9Away.Size = new System.Drawing.Size(121, 21);
             this.PlayerPosition9Away.TabIndex = 167;
+            // 
+            // Goals8Away
+            // 
+            this.Goals8Away.Location = new System.Drawing.Point(312, 286);
+            this.Goals8Away.Mask = "00";
+            this.Goals8Away.Name = "Goals8Away";
+            this.Goals8Away.PromptChar = ' ';
+            this.Goals8Away.Size = new System.Drawing.Size(33, 20);
+            this.Goals8Away.TabIndex = 188;
             // 
             // PlayerPosition8Away
             // 
@@ -876,6 +1011,15 @@
             this.PlayerPosition8Away.Size = new System.Drawing.Size(121, 21);
             this.PlayerPosition8Away.TabIndex = 166;
             // 
+            // Goals7Away
+            // 
+            this.Goals7Away.Location = new System.Drawing.Point(312, 260);
+            this.Goals7Away.Mask = "00";
+            this.Goals7Away.Name = "Goals7Away";
+            this.Goals7Away.PromptChar = ' ';
+            this.Goals7Away.Size = new System.Drawing.Size(33, 20);
+            this.Goals7Away.TabIndex = 187;
+            // 
             // PlayerPosition7Away
             // 
             this.PlayerPosition7Away.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -890,6 +1034,15 @@
             this.PlayerPosition7Away.Name = "PlayerPosition7Away";
             this.PlayerPosition7Away.Size = new System.Drawing.Size(121, 21);
             this.PlayerPosition7Away.TabIndex = 165;
+            // 
+            // Goals6Away
+            // 
+            this.Goals6Away.Location = new System.Drawing.Point(312, 234);
+            this.Goals6Away.Mask = "00";
+            this.Goals6Away.Name = "Goals6Away";
+            this.Goals6Away.PromptChar = ' ';
+            this.Goals6Away.Size = new System.Drawing.Size(33, 20);
+            this.Goals6Away.TabIndex = 186;
             // 
             // PlayerPosition6Away
             // 
@@ -906,6 +1059,15 @@
             this.PlayerPosition6Away.Size = new System.Drawing.Size(121, 21);
             this.PlayerPosition6Away.TabIndex = 164;
             // 
+            // Goals5Away
+            // 
+            this.Goals5Away.Location = new System.Drawing.Point(312, 207);
+            this.Goals5Away.Mask = "00";
+            this.Goals5Away.Name = "Goals5Away";
+            this.Goals5Away.PromptChar = ' ';
+            this.Goals5Away.Size = new System.Drawing.Size(33, 20);
+            this.Goals5Away.TabIndex = 185;
+            // 
             // PlayerPosition5Away
             // 
             this.PlayerPosition5Away.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -920,6 +1082,24 @@
             this.PlayerPosition5Away.Name = "PlayerPosition5Away";
             this.PlayerPosition5Away.Size = new System.Drawing.Size(121, 21);
             this.PlayerPosition5Away.TabIndex = 163;
+            // 
+            // Goals4Away
+            // 
+            this.Goals4Away.Location = new System.Drawing.Point(312, 181);
+            this.Goals4Away.Mask = "00";
+            this.Goals4Away.Name = "Goals4Away";
+            this.Goals4Away.PromptChar = ' ';
+            this.Goals4Away.Size = new System.Drawing.Size(33, 20);
+            this.Goals4Away.TabIndex = 184;
+            // 
+            // Goals3Away
+            // 
+            this.Goals3Away.Location = new System.Drawing.Point(312, 155);
+            this.Goals3Away.Mask = "00";
+            this.Goals3Away.Name = "Goals3Away";
+            this.Goals3Away.PromptChar = ' ';
+            this.Goals3Away.Size = new System.Drawing.Size(33, 20);
+            this.Goals3Away.TabIndex = 183;
             // 
             // PlayerPosition4Away
             // 
@@ -936,6 +1116,15 @@
             this.PlayerPosition4Away.Size = new System.Drawing.Size(121, 21);
             this.PlayerPosition4Away.TabIndex = 162;
             // 
+            // Goals2Away
+            // 
+            this.Goals2Away.Location = new System.Drawing.Point(312, 127);
+            this.Goals2Away.Mask = "00";
+            this.Goals2Away.Name = "Goals2Away";
+            this.Goals2Away.PromptChar = ' ';
+            this.Goals2Away.Size = new System.Drawing.Size(33, 20);
+            this.Goals2Away.TabIndex = 182;
+            // 
             // PlayerPosition3Away
             // 
             this.PlayerPosition3Away.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -950,6 +1139,15 @@
             this.PlayerPosition3Away.Name = "PlayerPosition3Away";
             this.PlayerPosition3Away.Size = new System.Drawing.Size(121, 21);
             this.PlayerPosition3Away.TabIndex = 161;
+            // 
+            // Goals1Away
+            // 
+            this.Goals1Away.Location = new System.Drawing.Point(312, 100);
+            this.Goals1Away.Mask = "00";
+            this.Goals1Away.Name = "Goals1Away";
+            this.Goals1Away.PromptChar = ' ';
+            this.Goals1Away.Size = new System.Drawing.Size(33, 20);
+            this.Goals1Away.TabIndex = 181;
             // 
             // PlayerPosition2Away
             // 
@@ -1244,204 +1442,6 @@
             this.addMatchLabel.Size = new System.Drawing.Size(135, 37);
             this.addMatchLabel.TabIndex = 12;
             this.addMatchLabel.Text = "Add Match";
-            // 
-            // Goals1Home
-            // 
-            this.Goals1Home.Location = new System.Drawing.Point(306, 100);
-            this.Goals1Home.Mask = "00";
-            this.Goals1Home.Name = "Goals1Home";
-            this.Goals1Home.PromptChar = ' ';
-            this.Goals1Home.Size = new System.Drawing.Size(33, 20);
-            this.Goals1Home.TabIndex = 170;
-            // 
-            // Goals2Home
-            // 
-            this.Goals2Home.Location = new System.Drawing.Point(306, 127);
-            this.Goals2Home.Mask = "00";
-            this.Goals2Home.Name = "Goals2Home";
-            this.Goals2Home.PromptChar = ' ';
-            this.Goals2Home.Size = new System.Drawing.Size(33, 20);
-            this.Goals2Home.TabIndex = 171;
-            // 
-            // Goals4Home
-            // 
-            this.Goals4Home.Location = new System.Drawing.Point(306, 181);
-            this.Goals4Home.Mask = "00";
-            this.Goals4Home.Name = "Goals4Home";
-            this.Goals4Home.PromptChar = ' ';
-            this.Goals4Home.Size = new System.Drawing.Size(33, 20);
-            this.Goals4Home.TabIndex = 173;
-            // 
-            // Goals3Home
-            // 
-            this.Goals3Home.Location = new System.Drawing.Point(306, 155);
-            this.Goals3Home.Mask = "00";
-            this.Goals3Home.Name = "Goals3Home";
-            this.Goals3Home.PromptChar = ' ';
-            this.Goals3Home.Size = new System.Drawing.Size(33, 20);
-            this.Goals3Home.TabIndex = 172;
-            // 
-            // Goals8Home
-            // 
-            this.Goals8Home.Location = new System.Drawing.Point(306, 286);
-            this.Goals8Home.Mask = "00";
-            this.Goals8Home.Name = "Goals8Home";
-            this.Goals8Home.PromptChar = ' ';
-            this.Goals8Home.Size = new System.Drawing.Size(33, 20);
-            this.Goals8Home.TabIndex = 177;
-            // 
-            // Goals7Home
-            // 
-            this.Goals7Home.Location = new System.Drawing.Point(306, 260);
-            this.Goals7Home.Mask = "00";
-            this.Goals7Home.Name = "Goals7Home";
-            this.Goals7Home.PromptChar = ' ';
-            this.Goals7Home.Size = new System.Drawing.Size(33, 20);
-            this.Goals7Home.TabIndex = 176;
-            // 
-            // Goals6Home
-            // 
-            this.Goals6Home.Location = new System.Drawing.Point(306, 234);
-            this.Goals6Home.Mask = "00";
-            this.Goals6Home.Name = "Goals6Home";
-            this.Goals6Home.PromptChar = ' ';
-            this.Goals6Home.Size = new System.Drawing.Size(33, 20);
-            this.Goals6Home.TabIndex = 175;
-            // 
-            // Goals5Home
-            // 
-            this.Goals5Home.Location = new System.Drawing.Point(306, 207);
-            this.Goals5Home.Mask = "00";
-            this.Goals5Home.Name = "Goals5Home";
-            this.Goals5Home.PromptChar = ' ';
-            this.Goals5Home.Size = new System.Drawing.Size(33, 20);
-            this.Goals5Home.TabIndex = 174;
-            // 
-            // Goals11Home
-            // 
-            this.Goals11Home.Location = new System.Drawing.Point(306, 364);
-            this.Goals11Home.Mask = "00";
-            this.Goals11Home.Name = "Goals11Home";
-            this.Goals11Home.PromptChar = ' ';
-            this.Goals11Home.Size = new System.Drawing.Size(33, 20);
-            this.Goals11Home.TabIndex = 180;
-            // 
-            // Goals10Home
-            // 
-            this.Goals10Home.Location = new System.Drawing.Point(306, 338);
-            this.Goals10Home.Mask = "00";
-            this.Goals10Home.Name = "Goals10Home";
-            this.Goals10Home.PromptChar = ' ';
-            this.Goals10Home.Size = new System.Drawing.Size(33, 20);
-            this.Goals10Home.TabIndex = 179;
-            // 
-            // Goals9Home
-            // 
-            this.Goals9Home.Location = new System.Drawing.Point(306, 312);
-            this.Goals9Home.Mask = "00";
-            this.Goals9Home.Name = "Goals9Home";
-            this.Goals9Home.PromptChar = ' ';
-            this.Goals9Home.Size = new System.Drawing.Size(33, 20);
-            this.Goals9Home.TabIndex = 178;
-            // 
-            // Goals11Away
-            // 
-            this.Goals11Away.Location = new System.Drawing.Point(312, 364);
-            this.Goals11Away.Mask = "00";
-            this.Goals11Away.Name = "Goals11Away";
-            this.Goals11Away.PromptChar = ' ';
-            this.Goals11Away.Size = new System.Drawing.Size(33, 20);
-            this.Goals11Away.TabIndex = 191;
-            // 
-            // Goals10Away
-            // 
-            this.Goals10Away.Location = new System.Drawing.Point(312, 338);
-            this.Goals10Away.Mask = "00";
-            this.Goals10Away.Name = "Goals10Away";
-            this.Goals10Away.PromptChar = ' ';
-            this.Goals10Away.Size = new System.Drawing.Size(33, 20);
-            this.Goals10Away.TabIndex = 190;
-            // 
-            // Goals9Away
-            // 
-            this.Goals9Away.Location = new System.Drawing.Point(312, 312);
-            this.Goals9Away.Mask = "00";
-            this.Goals9Away.Name = "Goals9Away";
-            this.Goals9Away.PromptChar = ' ';
-            this.Goals9Away.Size = new System.Drawing.Size(33, 20);
-            this.Goals9Away.TabIndex = 189;
-            // 
-            // Goals8Away
-            // 
-            this.Goals8Away.Location = new System.Drawing.Point(312, 286);
-            this.Goals8Away.Mask = "00";
-            this.Goals8Away.Name = "Goals8Away";
-            this.Goals8Away.PromptChar = ' ';
-            this.Goals8Away.Size = new System.Drawing.Size(33, 20);
-            this.Goals8Away.TabIndex = 188;
-            // 
-            // Goals7Away
-            // 
-            this.Goals7Away.Location = new System.Drawing.Point(312, 260);
-            this.Goals7Away.Mask = "00";
-            this.Goals7Away.Name = "Goals7Away";
-            this.Goals7Away.PromptChar = ' ';
-            this.Goals7Away.Size = new System.Drawing.Size(33, 20);
-            this.Goals7Away.TabIndex = 187;
-            // 
-            // Goals6Away
-            // 
-            this.Goals6Away.Location = new System.Drawing.Point(312, 234);
-            this.Goals6Away.Mask = "00";
-            this.Goals6Away.Name = "Goals6Away";
-            this.Goals6Away.PromptChar = ' ';
-            this.Goals6Away.Size = new System.Drawing.Size(33, 20);
-            this.Goals6Away.TabIndex = 186;
-            // 
-            // Goals5Away
-            // 
-            this.Goals5Away.Location = new System.Drawing.Point(312, 207);
-            this.Goals5Away.Mask = "00";
-            this.Goals5Away.Name = "Goals5Away";
-            this.Goals5Away.PromptChar = ' ';
-            this.Goals5Away.Size = new System.Drawing.Size(33, 20);
-            this.Goals5Away.TabIndex = 185;
-            // 
-            // Goals4Away
-            // 
-            this.Goals4Away.Location = new System.Drawing.Point(312, 181);
-            this.Goals4Away.Mask = "00";
-            this.Goals4Away.Name = "Goals4Away";
-            this.Goals4Away.PromptChar = ' ';
-            this.Goals4Away.Size = new System.Drawing.Size(33, 20);
-            this.Goals4Away.TabIndex = 184;
-            // 
-            // Goals3Away
-            // 
-            this.Goals3Away.Location = new System.Drawing.Point(312, 155);
-            this.Goals3Away.Mask = "00";
-            this.Goals3Away.Name = "Goals3Away";
-            this.Goals3Away.PromptChar = ' ';
-            this.Goals3Away.Size = new System.Drawing.Size(33, 20);
-            this.Goals3Away.TabIndex = 183;
-            // 
-            // Goals2Away
-            // 
-            this.Goals2Away.Location = new System.Drawing.Point(312, 127);
-            this.Goals2Away.Mask = "00";
-            this.Goals2Away.Name = "Goals2Away";
-            this.Goals2Away.PromptChar = ' ';
-            this.Goals2Away.Size = new System.Drawing.Size(33, 20);
-            this.Goals2Away.TabIndex = 182;
-            // 
-            // Goals1Away
-            // 
-            this.Goals1Away.Location = new System.Drawing.Point(312, 100);
-            this.Goals1Away.Mask = "00";
-            this.Goals1Away.Name = "Goals1Away";
-            this.Goals1Away.PromptChar = ' ';
-            this.Goals1Away.Size = new System.Drawing.Size(33, 20);
-            this.Goals1Away.TabIndex = 181;
             // 
             // addMatch
             // 

@@ -1,6 +1,6 @@
 ﻿namespace WindowsFormsApplication2
 {
-    partial class SearchForAMatch
+    partial class searchForAMatch
     {
         /// <summary>
         /// Required designer variable.
@@ -36,20 +36,29 @@
             this.competitionID = new System.Windows.Forms.ComboBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.searchForMatchByCompetition = new System.Windows.Forms.RadioButton();
+            this.SearchForMatchByDate = new System.Windows.Forms.RadioButton();
+            this.searchForMatchByTeams = new System.Windows.Forms.RadioButton();
+            this.SearchForTeamsMostGoals = new System.Windows.Forms.RadioButton();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.searchForBestScorers = new System.Windows.Forms.RadioButton();
+            this.SearchForTeamsWithMost = new System.Windows.Forms.RadioButton();
+            this.comboBox6 = new System.Windows.Forms.ComboBox();
+            this.comboBox4 = new System.Windows.Forms.ComboBox();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // editMatchLabel
             // 
             this.editMatchLabel.AutoSize = true;
             this.editMatchLabel.Font = new System.Drawing.Font("Segoe Print", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.editMatchLabel.Location = new System.Drawing.Point(279, 33);
+            this.editMatchLabel.Location = new System.Drawing.Point(38, 33);
             this.editMatchLabel.Name = "editMatchLabel";
-            this.editMatchLabel.Size = new System.Drawing.Size(229, 37);
+            this.editMatchLabel.Size = new System.Drawing.Size(140, 37);
             this.editMatchLabel.TabIndex = 18;
-            this.editMatchLabel.Text = "Search For A Match";
+            this.editMatchLabel.Text = "Search Tool";
             // 
             // returnButton
             // 
@@ -63,17 +72,18 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(285, 376);
+            this.button1.Location = new System.Drawing.Point(623, 528);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(117, 23);
             this.button1.TabIndex = 27;
             this.button1.Text = "Search!";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(243, 137);
+            this.label1.Location = new System.Drawing.Point(528, 99);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(18, 13);
             this.label1.TabIndex = 26;
@@ -81,12 +91,11 @@
             // 
             // matchDateBox
             // 
-            this.matchDateBox.Location = new System.Drawing.Point(76, 223);
-            this.matchDateBox.Mask = "00/00/0000";
+            this.matchDateBox.Location = new System.Drawing.Point(386, 125);
+            this.matchDateBox.Mask = "0000-00-00";
             this.matchDateBox.Name = "matchDateBox";
             this.matchDateBox.Size = new System.Drawing.Size(138, 20);
             this.matchDateBox.TabIndex = 25;
-            this.matchDateBox.ValidatingType = typeof(System.DateTime);
             // 
             // competitionID
             // 
@@ -97,78 +106,181 @@
             "League Cup",
             "Champions League",
             "Friendly"});
-            this.competitionID.Location = new System.Drawing.Point(76, 317);
+            this.competitionID.Location = new System.Drawing.Point(386, 149);
             this.competitionID.Name = "competitionID";
             this.competitionID.Size = new System.Drawing.Size(138, 21);
             this.competitionID.TabIndex = 24;
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(285, 134);
+            this.textBox2.Location = new System.Drawing.Point(554, 96);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(138, 20);
             this.textBox2.TabIndex = 23;
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(76, 134);
+            this.textBox1.Location = new System.Drawing.Point(386, 96);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(138, 20);
             this.textBox1.TabIndex = 22;
             // 
-            // radioButton3
+            // searchForMatchByCompetition
             // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(45, 270);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(131, 17);
-            this.radioButton3.TabIndex = 21;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "Search by Competition";
-            this.radioButton3.UseVisualStyleBackColor = true;
+            this.searchForMatchByCompetition.AutoSize = true;
+            this.searchForMatchByCompetition.Location = new System.Drawing.Point(45, 153);
+            this.searchForMatchByCompetition.Name = "searchForMatchByCompetition";
+            this.searchForMatchByCompetition.Size = new System.Drawing.Size(178, 17);
+            this.searchForMatchByCompetition.TabIndex = 21;
+            this.searchForMatchByCompetition.TabStop = true;
+            this.searchForMatchByCompetition.Text = "Search for match by Competition";
+            this.searchForMatchByCompetition.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
+            // SearchForMatchByDate
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(45, 185);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(99, 17);
-            this.radioButton2.TabIndex = 20;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Search by Date";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.SearchForMatchByDate.AutoSize = true;
+            this.SearchForMatchByDate.Location = new System.Drawing.Point(45, 126);
+            this.SearchForMatchByDate.Name = "SearchForMatchByDate";
+            this.SearchForMatchByDate.Size = new System.Drawing.Size(146, 17);
+            this.SearchForMatchByDate.TabIndex = 20;
+            this.SearchForMatchByDate.TabStop = true;
+            this.SearchForMatchByDate.Text = "Search for match by Date";
+            this.SearchForMatchByDate.UseVisualStyleBackColor = true;
             // 
-            // radioButton1
+            // searchForMatchByTeams
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(45, 93);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(108, 17);
-            this.radioButton1.TabIndex = 19;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Search by Teams";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.searchForMatchByTeams.AutoSize = true;
+            this.searchForMatchByTeams.Location = new System.Drawing.Point(45, 97);
+            this.searchForMatchByTeams.Name = "searchForMatchByTeams";
+            this.searchForMatchByTeams.Size = new System.Drawing.Size(316, 17);
+            this.searchForMatchByTeams.TabIndex = 19;
+            this.searchForMatchByTeams.TabStop = true;
+            this.searchForMatchByTeams.Text = "Search for match by Teams which played against themselves ";
+            this.searchForMatchByTeams.UseVisualStyleBackColor = true;
             // 
-            // SearchForAMatch
+            // SearchForTeamsMostGoals
+            // 
+            this.SearchForTeamsMostGoals.AutoSize = true;
+            this.SearchForTeamsMostGoals.Location = new System.Drawing.Point(45, 176);
+            this.SearchForTeamsMostGoals.Name = "SearchForTeamsMostGoals";
+            this.SearchForTeamsMostGoals.Size = new System.Drawing.Size(295, 17);
+            this.SearchForTeamsMostGoals.TabIndex = 28;
+            this.SearchForTeamsMostGoals.TabStop = true;
+            this.SearchForTeamsMostGoals.Text = "Search for Teams with most Goals ( Optional Competition)";
+            this.SearchForTeamsMostGoals.UseVisualStyleBackColor = true;
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Items.AddRange(new object[] {
+            "None",
+            "League",
+            "League Cup",
+            "Champions League",
+            "Friendly"});
+            this.comboBox2.Location = new System.Drawing.Point(386, 175);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(138, 21);
+            this.comboBox2.TabIndex = 31;
+            // 
+            // comboBox3
+            // 
+            this.comboBox3.AccessibleName = "";
+            this.comboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox3.FormattingEnabled = true;
+            this.comboBox3.Items.AddRange(new object[] {
+            "None",
+            "League",
+            "League Cup",
+            "Champions League",
+            "Friendly"});
+            this.comboBox3.Location = new System.Drawing.Point(386, 202);
+            this.comboBox3.Name = "comboBox3";
+            this.comboBox3.Size = new System.Drawing.Size(138, 21);
+            this.comboBox3.TabIndex = 33;
+            // 
+            // searchForBestScorers
+            // 
+            this.searchForBestScorers.AutoSize = true;
+            this.searchForBestScorers.Location = new System.Drawing.Point(45, 203);
+            this.searchForBestScorers.Name = "searchForBestScorers";
+            this.searchForBestScorers.Size = new System.Drawing.Size(273, 17);
+            this.searchForBestScorers.TabIndex = 32;
+            this.searchForBestScorers.TabStop = true;
+            this.searchForBestScorers.Text = "Search for Best Scorers(optional Competition/Team )";
+            this.searchForBestScorers.UseVisualStyleBackColor = true;
+            // 
+            // SearchForTeamsWithMost
+            // 
+            this.SearchForTeamsWithMost.AutoSize = true;
+            this.SearchForTeamsWithMost.Location = new System.Drawing.Point(45, 230);
+            this.SearchForTeamsWithMost.Name = "SearchForTeamsWithMost";
+            this.SearchForTeamsWithMost.Size = new System.Drawing.Size(258, 17);
+            this.SearchForTeamsWithMost.TabIndex = 36;
+            this.SearchForTeamsWithMost.TabStop = true;
+            this.SearchForTeamsWithMost.Text = "Search for Teams with Most Wins at Home/Away";
+            this.SearchForTeamsWithMost.UseVisualStyleBackColor = true;
+            // 
+            // comboBox6
+            // 
+            this.comboBox6.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox6.FormattingEnabled = true;
+            this.comboBox6.Items.AddRange(new object[] {
+            "None",
+            "Home",
+            "Away"});
+            this.comboBox6.Location = new System.Drawing.Point(386, 230);
+            this.comboBox6.Name = "comboBox6";
+            this.comboBox6.Size = new System.Drawing.Size(138, 21);
+            this.comboBox6.TabIndex = 38;
+            // 
+            // comboBox4
+            // 
+            this.comboBox4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox4.FormattingEnabled = true;
+            this.comboBox4.Location = new System.Drawing.Point(554, 199);
+            this.comboBox4.Name = "comboBox4";
+            this.comboBox4.Size = new System.Drawing.Size(138, 21);
+            this.comboBox4.TabIndex = 39;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(45, 272);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(695, 231);
+            this.dataGridView1.TabIndex = 40;
+            // 
+            // searchForAMatch
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(784, 661);
+            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.comboBox4);
+            this.Controls.Add(this.comboBox6);
+            this.Controls.Add(this.SearchForTeamsWithMost);
+            this.Controls.Add(this.comboBox3);
+            this.Controls.Add(this.searchForBestScorers);
+            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.SearchForTeamsMostGoals);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.matchDateBox);
             this.Controls.Add(this.competitionID);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.radioButton3);
-            this.Controls.Add(this.radioButton2);
-            this.Controls.Add(this.radioButton1);
+            this.Controls.Add(this.searchForMatchByCompetition);
+            this.Controls.Add(this.SearchForMatchByDate);
+            this.Controls.Add(this.searchForMatchByTeams);
             this.Controls.Add(this.returnButton);
             this.Controls.Add(this.editMatchLabel);
-            this.Name = "SearchForAMatch";
+            this.Name = "searchForAMatch";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "SearchForAMatch";
+            this.Text = "MatchDatabase - Search Tool";
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -184,8 +296,16 @@
         private System.Windows.Forms.ComboBox competitionID;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.RadioButton radioButton3;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton searchForMatchByCompetition;
+        private System.Windows.Forms.RadioButton SearchForMatchByDate;
+        private System.Windows.Forms.RadioButton searchForMatchByTeams;
+        private System.Windows.Forms.RadioButton SearchForTeamsMostGoals;
+        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.RadioButton searchForBestScorers;
+        private System.Windows.Forms.RadioButton SearchForTeamsWithMost;
+        private System.Windows.Forms.ComboBox comboBox6;
+        private System.Windows.Forms.ComboBox comboBox4;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }

@@ -77,7 +77,7 @@ namespace WindowsFormsApplication2
         private void SearchForMatchButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-            SearchForAMatch form = new SearchForAMatch();
+            searchForAMatch form = new searchForAMatch();
             form.ShowDialog();
             connectionWithDatabase.CloseConnection();
             this.Show();
