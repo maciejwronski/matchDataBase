@@ -39,38 +39,27 @@ namespace WindowsFormsApplication2
                 }
                 if (searchForMatchByTeams.Checked)
                 {
-                    connectionWithDatabase.searchFor(dataGridView1, 1);
+                    connectionWithDatabase.searchForMatchByTeamNames(dataGridView1, textBox1,textBox2);
                 }
                 else if (SearchForMatchByDate.Checked)
                 {
-                    connectionWithDatabase.searchFor(dataGridView1, 2);
+                    connectionWithDatabase.searchForMatchByDate(dataGridView1, matchDateBox);
                 }
                 else if (searchForMatchByCompetition.Checked)
                 {
-                    connectionWithDatabase.searchFor(dataGridView1, 3);
+                    connectionWithDatabase.searchForMatchByCompetition(dataGridView1, competitionID);
                 }
                 else if (searchForBestScorers.Checked)
                 {
-                    connectionWithDatabase.searchFor(dataGridView1, 4);
+                    connectionWithDatabase.searchForBestScorers(dataGridView1, comboBox3, comboBox4);
                 }
                 else if (SearchForTeamsMostGoals.Checked)
                 {
-                    connectionWithDatabase.searchFor(dataGridView1, 5);
+                    connectionWithDatabase.searchForTeamsMostGoals(dataGridView1, comboBox2);
                 }
                 else if (SearchForTeamsWithMost.Checked)
                 {
-                        string Query = "";
-                        if(comboBox6.Text == "None")
-                        {
-                            Query = @"select count(t.name) as 'Wins', t.name as 'Team Name' from matches
-                                             left join teams as t ON Winner_TeamID = t.TeamID group by t.teamID order by 'Wins';";
-                        }
-                        else
-                        {
-                            Query = @"select count(t.name) as 'Wins', t.name as 'Team Name' from matches
-                                    left join teams as t ON t.TeamID = "+ comboBox6.Text+"_TeamID WHERE "+comboBox6.Text+"_TeamID = Winner_TeamID  group by t.teamID order by 'Wins';";
-                        }
-                        connectionWithDatabase.searchFor(dataGridView1, Query);
+                    connectionWithDatabase.searchForTeamsMostWins(dataGridView1, comboBox6);
                 }
             }
             catch (Exception es)
@@ -81,6 +70,11 @@ namespace WindowsFormsApplication2
             {
                 connectionWithDatabase.CloseConnection();
             }
+        }
+
+        private void comboBox4_Click(object sender, EventArgs e)
+        {
+            connectionWithDatabase.loadTeamsWithoutSeason(comboBox4);
         }
     }
 }

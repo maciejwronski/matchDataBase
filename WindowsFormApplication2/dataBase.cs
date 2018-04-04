@@ -35,7 +35,7 @@ using MySql.Data;
 /*/ updateMatch(ListBox ListBoxData, MaskedTextBox DateBox, MaskedTextBox TimeBox, ComboBox CompetitionBox) Updates Date, Time, Competition of the match and the winner based on goals /*/
 /*/ updateGoalsInMatch(ListBox ListBoxData, MaskedTextBox[] GoalsBox, int TeamIndex) Updates all goals scored by players /*/
 
-   // on delete cascaede?
+// on delete cascaede?
 // -------------------------------------------------------------------------------------------------------------------
 
 
@@ -164,6 +164,19 @@ namespace WindowsFormsApplication2
             comboBoxData.DisplayMember = "fullTeam";
             comboBoxData.ValueMember = "TeamID";
 
+        }
+        /*/ loadTeams(ComboBox ComboBoxData) load teams(Name, Given season) from DB to given ComboBox /*/
+        public void loadTeamsWithoutSeason(ComboBox comboBoxData)
+        {
+            string Query = "select * from teams;";
+            DataSet ds = new DataSet();
+            MySqlDataAdapter adapter = new MySqlDataAdapter(Query, connection);
+            adapter.Fill(ds);
+
+            comboBoxData.DataSource = ds.Tables[0];
+            ds.Tables[0].Columns.Add("fullTeam", typeof(string), "Name");
+            comboBoxData.DisplayMember = "fullTeam";
+            comboBoxData.ValueMember = "TeamID";
         }
         /*/ loadMatches(ListBox listBoxData) loads match(Team-Team Date) from DB to ListBox /*/
         public void loadMatches(ListBox listBoxData)
@@ -315,6 +328,7 @@ namespace WindowsFormsApplication2
                 case 1: Winner = homeTeamComboBox.SelectedValue; break;
                 case 2: Winner = awayTeamComboBox.SelectedValue; break;
             }
+            Console.WriteLine(Query);
             long numberOfMatch = insertAndReturnCommand(Query, matchDateBox.Text, matchTimeBox.Text, competitionID.Text, homeID, awayID, Winner);
             return numberOfMatch;
         }
@@ -361,42 +375,80 @@ namespace WindowsFormsApplication2
             string Query = "Delete from matches where MatchID = ?";
             sendCommand(Query, ListBoxData.SelectedValue);
         }
-        public void searchFor(DataGridView DataGrid, int Index)
+        public void sendQueryDataGridView(DataGridView DataGrid, string Query, params object[] p)
         {
-            string Query;
-            switch (Index)
+            MySqlDataAdapter adapter = new MySqlDataAdapter(Query, connection);
+            foreach (var item in p)
             {
-                case 1: Query = @"select MatchID, MatchData as Date, MatchTime as Time, T1.name as Home_Team, T2.name as Away_Team , T3.name as Winner from matches 
+               adapter.SelectCommand.Parameters.AddWithValue("", item);
+            }
+            DataTable table = new DataTable();
+            adapter.Fill(table);
+            DataGrid.DataSource = table;
+            DataGrid.ReadOnly = true;
+            DataGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            DataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+        }
+        public void searchForMatchByTeamNames(DataGridView DataGrid, TextBox t1, TextBox t2)
+        {
+            string Query = @"select MatchID, MatchData as Date, MatchTime as Time, T1.name as Home_Team, T2.name as Away_Team , T3.name as Winner from matches 
                                  LEFT JOIN teams as T1 on T1.TeamID = Home_TeamID
                                  LEFT JOIN teams as T2 on T2.TeamID = Away_TeamID
                                  LEFT JOIN teams as T3 on T3.TeamID = Winner_TeamID
-                                 WHERE T1.name = ? AND T2.name = ? ORDER BY MatchData; "; break;
-                case 2: Query = @"select MatchID, MatchData as Date, MatchTime as Time , T1.name as Home_Team, T2.name as Away_Team , T3.name as Winner from matches 
-                                  LEFT JOIN teams as T1 on T1.TeamID = Home_TeamID
-                                  LEFT JOIN teams as T2 on T2.TeamID = Away_TeamID
-                                  LEFT JOIN teams as T3 on T3.TeamID = Winner_TeamID
-                                  WHERE MatchData = ? ORDER BY MatchTime;"; break;
-                case 3: Query = @"select MatchID, MatchData as Date, MatchTime as Time, T1.name as Home_Team, T2.name as Away_Team , T3.name as Winner from matches 
-                                  LEFT JOIN teams as T1 on T1.TeamID = Home_TeamID
-                                  LEFT JOIN teams as T2 on T2.TeamID = Away_TeamID
-                                  LEFT JOIN teams as T3 on T3.TeamID = Winner_TeamID
-                                  WHERE (Competition_CompetitionName = ? OR ? = 'None') ORDER BY MatchData; "; break;
-                case 4: Query = @"select tm.name as 'Team Name', sum(goalsScored) as 'Total Goals' from goalsinmatch 
-                                  LEFT JOIN players as pl ON Players_PlayerID = pl.PlayerID
-                                  LEFT JOIN teams as tm ON pl.Teams_TeamID = tm.TeamID 
-                                  LEFT JOIN matches as m ON m.MatchID = Match_MatchID
-                                  where GoalsScored != 0 AND (m.Competition_CompetitionName = ? OR ? = 'None') GROUP by tm.Name;"; break;
-                case 5: Query = @"select Pl.PlayerName as 'Name', pl.PlayerNumber as 'Number', Pl.Positions_PositionsID as 'Position', tm.Name as 'Team Name', sum(goalsScored) as Goals from goalsinmatch 
-                                  LEFT JOIN players as pl ON Players_PlayerID = pl.PlayerID
-                                  LEFT JOIN teams as tm ON pl.Teams_TeamID = tm.TeamID 
-                                  LEFT JOIN matches as m ON m.MatchID = Match_MatchID
-                                  where GoalsScored != 0 AND (m.Competition_CompetitionName = ? OR ? = 'None') AND (m.Competition_CompetitionName = ? OR ? = 'None') GROUP by Players_Playerid ORDER BY Goals"; break;
-            }
+                                 WHERE T1.name = ? AND T2.name = ? ORDER BY MatchData; ";
+            sendQueryDataGridView(DataGrid, Query, t1.Text, t2.Text);
         }
-        public void searchFor(DataGridView DataGrid, string Query)
+        public void searchForMatchByDate(DataGridView DataGrid, MaskedTextBox mTB)
         {
-
-
+            string Query = @"select MatchID, MatchData as Date, MatchTime as Time , T1.name as Home_Team, T2.name as Away_Team , T3.name as Winner from matches 
+                                  LEFT JOIN teams as T1 on T1.TeamID = Home_TeamID
+                                  LEFT JOIN teams as T2 on T2.TeamID = Away_TeamID
+                                  LEFT JOIN teams as T3 on T3.TeamID = Winner_TeamID
+                                  WHERE MatchData = ? ORDER BY MatchTime;";
+            sendQueryDataGridView(DataGrid, Query, mTB.Text);
+        }
+        public void searchForMatchByCompetition(DataGridView DataGrid, ComboBox cmbBox)
+        {
+            string Query = @"select MatchID, MatchData as Date, MatchTime as Time, T1.name as Home_Team, T2.name as Away_Team , T3.name as Winner from matches 
+                                  LEFT JOIN teams as T1 on T1.TeamID = Home_TeamID
+                                  LEFT JOIN teams as T2 on T2.TeamID = Away_TeamID
+                                  LEFT JOIN teams as T3 on T3.TeamID = Winner_TeamID
+                                  WHERE (Competition_CompetitionName = ? OR ? = 'None') ORDER BY MatchData; ";
+            sendQueryDataGridView(DataGrid, Query, cmbBox.Text, cmbBox.Text);
+        }
+        public void searchForTeamsMostGoals(DataGridView DataGrid, ComboBox compBox)
+        {
+            string Query = @"select tm.name as 'Team Name', sum(goalsScored) as 'Total Goals' from goalsinmatch 
+                                  LEFT JOIN players as pl ON Players_PlayerID = pl.PlayerID
+                                  LEFT JOIN teams as tm ON pl.Teams_TeamID = tm.TeamID 
+                                  LEFT JOIN matches as m ON m.MatchID = Match_MatchID
+                                  where GoalsScored != 0 AND (m.Competition_CompetitionName = ? OR ? = 'None') GROUP by tm.Name Order By 'Total Goals';";
+            sendQueryDataGridView(DataGrid, Query, compBox.Text, compBox.Text);
+        }
+        public void searchForBestScorers(DataGridView DataGrid, ComboBox compBox, ComboBox teamBox)
+        {
+            string Query = @"select Pl.PlayerName as 'Name', pl.PlayerNumber as 'Number', Pl.Positions_PositionsID as 'Position', tm.Name as 'Team Name', sum(goalsScored) as Goals from goalsinmatch 
+                                  LEFT JOIN players as pl ON Players_PlayerID = pl.PlayerID
+                                  LEFT JOIN teams as tm ON pl.Teams_TeamID = tm.TeamID 
+                                  LEFT JOIN matches as m ON m.MatchID = Match_MatchID
+                                  where GoalsScored != 0 AND (m.Competition_CompetitionName = ? OR ? = 'None') AND (tm.Name = ? OR ? = 'None') Group by pl.PlayerID order by Goals";
+            sendQueryDataGridView(DataGrid, Query, compBox.Text, compBox.Text, teamBox.Text, teamBox.Text);
+        }
+        public void searchForTeamsMostWins(DataGridView DataGrid, ComboBox comb)
+        {
+            string Query = "";
+            if (comb.Text == "None")
+            {
+                Query = @"select count(t.name) as 'Wins', t.name as 'Team Name' from matches
+                                             left join teams as t ON Winner_TeamID = t.TeamID group by t.teamID order by 'Wins';";
+            }
+            else
+            {
+                Query = @"select count(t.name) as 'Wins', t.name as 'Team Name' from matches
+                                    left join teams as t ON t.TeamID = " + comb.Text + "_TeamID WHERE " + comb.Text + "_TeamID = Winner_TeamID  group by t.teamID order by 'Wins';";
+            }
+            sendQueryDataGridView(DataGrid, Query);
         }
     }
 }

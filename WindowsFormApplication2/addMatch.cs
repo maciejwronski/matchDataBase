@@ -120,6 +120,11 @@ namespace WindowsFormsApplication2
 
             try
             {
+                if (!matchDateBox.MaskCompleted || !matchTimeBox.MaskCompleted || competitionID.SelectedItem == null || homeTeamComboBox.SelectedItem == null || awayTeamComboBox.SelectedItem == null)
+                {
+                    MessageBox.Show("Please don't leave empty boxes");
+                    return;
+                }
                 if (MessageBox.Show("Add this match?", "Match Database", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     if (!connectionWithDatabase.isConnected())

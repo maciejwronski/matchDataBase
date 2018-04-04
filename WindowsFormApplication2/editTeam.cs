@@ -77,6 +77,15 @@ namespace WindowsFormsApplication2
 
                 try
                 {
+                    for (int i = 0; i < 11; i++)
+                    {
+                        if (idBoxes[i].Text == "" || noBoxes[i].Text == "" || positionBoxes[i].SelectedItem == null)
+                        {
+                            MessageBox.Show("Error. Boxes cant be empty");
+                            return;
+                        }
+                    }
+
                     if (MessageBox.Show("Are you sure that you want to edit this team?", "Match Database", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
                     if (!connectionWithDatabase.isConnected())

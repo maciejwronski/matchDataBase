@@ -239,10 +239,13 @@
             // 
             this.comboBox4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox4.FormattingEnabled = true;
+            this.comboBox4.Items.AddRange(new object[] {
+            "None"});
             this.comboBox4.Location = new System.Drawing.Point(554, 199);
             this.comboBox4.Name = "comboBox4";
             this.comboBox4.Size = new System.Drawing.Size(138, 21);
             this.comboBox4.TabIndex = 39;
+            this.comboBox4.Click += new System.EventHandler(this.comboBox4_Click);
             // 
             // dataGridView1
             // 
