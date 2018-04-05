@@ -318,18 +318,11 @@ namespace WindowsFormsApplication2
         /*/ AddMatch(MaskedTextBox matchDateBox, MaskedTextBox matchTimeBox, ComboBox competitionID, ComboBox homeTeamComboBox, ComboBox awayTeamComboBox, int whoWon) Adds played match to database ( Date/Time/Competition/Teams and Winner)/*/
         public long AddMatch(MaskedTextBox matchDateBox, MaskedTextBox matchTimeBox, ComboBox competitionID, ComboBox homeTeamComboBox, ComboBox awayTeamComboBox, int whoWon)
         {
-            string Query = "INSERT into matches(MatchData, MatchTime, Competition_CompetitionName, Home_TeamID, Away_TeamID, Winner_TeamID) VALUES (?, ?, ?, ?, ?, ?);";
+            string Query = "INSERT into matches(MatchData, MatchTime, Competition_CompetitionName, Home_TeamID, Away_TeamID, Winner) VALUES (?, ?, ?, ?, ?, ?);";
             object homeID = homeTeamComboBox.SelectedValue;
             object awayID = awayTeamComboBox.SelectedValue;
-            object Winner = 0;
-            switch (whoWon)
-            {
-                case 0: Winner = 0; break;
-                case 1: Winner = homeTeamComboBox.SelectedValue; break;
-                case 2: Winner = awayTeamComboBox.SelectedValue; break;
-            }
             Console.WriteLine(Query);
-            long numberOfMatch = insertAndReturnCommand(Query, matchDateBox.Text, matchTimeBox.Text, competitionID.Text, homeID, awayID, Winner);
+            long numberOfMatch = insertAndReturnCommand(Query, matchDateBox.Text, matchTimeBox.Text, competitionID.Text, homeID, awayID, whoWon);
             return numberOfMatch;
         }
         /*/ addGoalsToPlayer(ComboBox team, int Index, int GoalsScored, long MatchID) adds to specific player his goals in given match /*/
@@ -354,7 +347,7 @@ namespace WindowsFormsApplication2
         public void updateMatch(ListBox ListBoxData, MaskedTextBox DateBox, MaskedTextBox TimeBox, ComboBox CompetitionBox, int Winner)
         {
             var matchID = ListBoxData.SelectedValue;
-            string QUERY = "UPDATE matches SET Matchdata = ?, MatchTime = ?, Competition_CompetitionName = ?, Winner_TeamID = ? where MatchID = ?";
+            string QUERY = "UPDATE matches SET Matchdata = ?, MatchTime = ?, Competition_CompetitionName = ?, Winner = ? where MatchID = ?";
             sendCommand(QUERY, DateBox.Text, TimeBox.Text, CompetitionBox.Text, Winner, matchID);
         }
         /*/ updateGoalsInMatch(ListBox ListBoxData, MaskedTextBox[] GoalsBox, int TeamIndex) Updates all goals scored by players /*/
@@ -392,28 +385,25 @@ namespace WindowsFormsApplication2
         }
         public void searchForMatchByTeamNames(DataGridView DataGrid, TextBox t1, TextBox t2)
         {
-            string Query = @"select MatchID, MatchData as Date, MatchTime as Time, T1.name as Home_Team, T2.name as Away_Team , T3.name as Winner from matches 
+            string Query = @"select MatchID, MatchData as Date, MatchTime as Time, T1.name as Home_Team, T2.name as Away_Team, IF(Winner = 1, T1.Name, If(Winner = 2, T2.Name, 'Draw')) as Winner from matches 
                                  LEFT JOIN teams as T1 on T1.TeamID = Home_TeamID
                                  LEFT JOIN teams as T2 on T2.TeamID = Away_TeamID
-                                 LEFT JOIN teams as T3 on T3.TeamID = Winner_TeamID
-                                 WHERE T1.name = ? AND T2.name = ? ORDER BY MatchData; ";
+                                 WHERE T1.name = ? AND T2.name = ? ORDER BY MatchData;  ";
             sendQueryDataGridView(DataGrid, Query, t1.Text, t2.Text);
         }
         public void searchForMatchByDate(DataGridView DataGrid, MaskedTextBox mTB)
         {
-            string Query = @"select MatchID, MatchData as Date, MatchTime as Time , T1.name as Home_Team, T2.name as Away_Team , T3.name as Winner from matches 
+            string Query = @"select MatchID, MatchData as Date, MatchTime as Time , T1.name as Home_Team, T2.name as Away_Team , IF(Winner = 1, T1.Name, If(Winner = 2, T2.Name, 'Draw')) as Winner from matches 
                                   LEFT JOIN teams as T1 on T1.TeamID = Home_TeamID
                                   LEFT JOIN teams as T2 on T2.TeamID = Away_TeamID
-                                  LEFT JOIN teams as T3 on T3.TeamID = Winner_TeamID
                                   WHERE MatchData = ? ORDER BY MatchTime;";
             sendQueryDataGridView(DataGrid, Query, mTB.Text);
         }
         public void searchForMatchByCompetition(DataGridView DataGrid, ComboBox cmbBox)
         {
-            string Query = @"select MatchID, MatchData as Date, MatchTime as Time, T1.name as Home_Team, T2.name as Away_Team , T3.name as Winner from matches 
+            string Query = @"select MatchID, MatchData as Date, MatchTime as Time, T1.name as Home_Team, T2.name as Away_Team , IF(Winner = 1, T1.Name, If(Winner = 2, T2.Name, 'Draw')) as Winner from matches 
                                   LEFT JOIN teams as T1 on T1.TeamID = Home_TeamID
                                   LEFT JOIN teams as T2 on T2.TeamID = Away_TeamID
-                                  LEFT JOIN teams as T3 on T3.TeamID = Winner_TeamID
                                   WHERE (Competition_CompetitionName = ? OR ? = 'None') ORDER BY MatchData; ";
             sendQueryDataGridView(DataGrid, Query, cmbBox.Text, cmbBox.Text);
         }
@@ -441,12 +431,45 @@ namespace WindowsFormsApplication2
             if (comb.Text == "None")
             {
                 Query = @"select count(t.name) as 'Wins', t.name as 'Team Name' from matches
-                                             left join teams as t ON Winner_TeamID = t.TeamID group by t.teamID order by 'Wins';";
+                            left join teams as t ON ((AWAY_TeamID = t.TeamID and Winner = 2) OR (Home_TeamID = t.TeamID and Winner = 1)) group by t.teamID order by 'Wins';";
             }
             else
             {
                 Query = @"select count(t.name) as 'Wins', t.name as 'Team Name' from matches
-                                    left join teams as t ON t.TeamID = " + comb.Text + "_TeamID WHERE " + comb.Text + "_TeamID = Winner_TeamID  group by t.teamID order by 'Wins';";
+                                    left join teams as t ON t.TeamID = " + comb.Text + "_TeamID WHERE Winner = " + comb.SelectedIndex + " group by t.teamID order by 'Wins';";
+                Console.WriteLine(Query);
+            }
+            sendQueryDataGridView(DataGrid, Query);
+        }
+        public void searchForTeamsMostDraws(DataGridView DataGrid, ComboBox comb)
+        {
+            string Query = "";
+            if (comb.Text == "None")
+            {
+                Query = @"select count(t.name) as 'Draws', t.name as 'Team Name' from matches
+                            left join teams as t ON ((AWAY_TeamID = t.TeamID and Winner = 0) OR (Home_TeamID = t.TeamID and Winner = 0)) group by t.teamID order by 'Wins';";
+            }
+            else
+            {
+                Query = @"select count(t.name) as 'Draws', t.name as 'Team Name' from matches
+                                    left join teams as t ON t.TeamID = " + comb.Text + "_TeamID WHERE Winner = 0 group by t.teamID order by 'Wins';";
+                Console.WriteLine(Query);
+            }
+            sendQueryDataGridView(DataGrid, Query);
+        }
+        public void searchForTeamsMostLoses(DataGridView DataGrid, ComboBox comb)
+        {
+            string Query = "";
+            if (comb.Text == "None")
+            {
+                Query = @"select count(t.name) as 'Wins', t.name as 'Team Name' from matches
+                            left join teams as t ON ((AWAY_TeamID = t.TeamID and Winner = 1) OR (Home_TeamID = t.TeamID and Winner = 2)) group by t.teamID order by 'Wins';";
+            }
+            else
+            {
+                Query = @"select count(t.name) as 'Wins', t.name as 'Team Name' from matches
+                                    left join teams as t ON t.TeamID = " + comb.Text + "_TeamID WHERE Winner = " + (comb.Text == "Home" ? 2:1) + " group by t.teamID order by 'Wins';";
+                Console.WriteLine(Query);
             }
             sendQueryDataGridView(DataGrid, Query);
         }

@@ -43,10 +43,14 @@
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.searchForBestScorers = new System.Windows.Forms.RadioButton();
-            this.SearchForTeamsWithMost = new System.Windows.Forms.RadioButton();
+            this.SearchForTeamsWithMostWins = new System.Windows.Forms.RadioButton();
             this.comboBox6 = new System.Windows.Forms.ComboBox();
             this.comboBox4 = new System.Windows.Forms.ComboBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.SearchForTeamsWithMostDraws = new System.Windows.Forms.RadioButton();
+            this.comboBox5 = new System.Windows.Forms.ComboBox();
+            this.SearchForTeamsWithMostLoses = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -72,7 +76,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(623, 528);
+            this.button1.Location = new System.Drawing.Point(623, 607);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(117, 23);
             this.button1.TabIndex = 27;
@@ -211,16 +215,16 @@
             this.searchForBestScorers.Text = "Search for Best Scorers(optional Competition/Team )";
             this.searchForBestScorers.UseVisualStyleBackColor = true;
             // 
-            // SearchForTeamsWithMost
+            // SearchForTeamsWithMostWins
             // 
-            this.SearchForTeamsWithMost.AutoSize = true;
-            this.SearchForTeamsWithMost.Location = new System.Drawing.Point(45, 230);
-            this.SearchForTeamsWithMost.Name = "SearchForTeamsWithMost";
-            this.SearchForTeamsWithMost.Size = new System.Drawing.Size(258, 17);
-            this.SearchForTeamsWithMost.TabIndex = 36;
-            this.SearchForTeamsWithMost.TabStop = true;
-            this.SearchForTeamsWithMost.Text = "Search for Teams with Most Wins at Home/Away";
-            this.SearchForTeamsWithMost.UseVisualStyleBackColor = true;
+            this.SearchForTeamsWithMostWins.AutoSize = true;
+            this.SearchForTeamsWithMostWins.Location = new System.Drawing.Point(45, 230);
+            this.SearchForTeamsWithMostWins.Name = "SearchForTeamsWithMostWins";
+            this.SearchForTeamsWithMostWins.Size = new System.Drawing.Size(258, 17);
+            this.SearchForTeamsWithMostWins.TabIndex = 36;
+            this.SearchForTeamsWithMostWins.TabStop = true;
+            this.SearchForTeamsWithMostWins.Text = "Search for Teams with Most Wins at Home/Away";
+            this.SearchForTeamsWithMostWins.UseVisualStyleBackColor = true;
             // 
             // comboBox6
             // 
@@ -250,10 +254,58 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(45, 272);
+            this.dataGridView1.Location = new System.Drawing.Point(45, 357);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(695, 231);
             this.dataGridView1.TabIndex = 40;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "None",
+            "Home",
+            "Away"});
+            this.comboBox1.Location = new System.Drawing.Point(386, 257);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(138, 21);
+            this.comboBox1.TabIndex = 42;
+            // 
+            // SearchForTeamsWithMostDraws
+            // 
+            this.SearchForTeamsWithMostDraws.AutoSize = true;
+            this.SearchForTeamsWithMostDraws.Location = new System.Drawing.Point(45, 257);
+            this.SearchForTeamsWithMostDraws.Name = "SearchForTeamsWithMostDraws";
+            this.SearchForTeamsWithMostDraws.Size = new System.Drawing.Size(264, 17);
+            this.SearchForTeamsWithMostDraws.TabIndex = 41;
+            this.SearchForTeamsWithMostDraws.TabStop = true;
+            this.SearchForTeamsWithMostDraws.Text = "Search for Teams with Most Draws at Home/Away";
+            this.SearchForTeamsWithMostDraws.UseVisualStyleBackColor = true;
+            // 
+            // comboBox5
+            // 
+            this.comboBox5.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox5.FormattingEnabled = true;
+            this.comboBox5.Items.AddRange(new object[] {
+            "None",
+            "Home",
+            "Away"});
+            this.comboBox5.Location = new System.Drawing.Point(386, 284);
+            this.comboBox5.Name = "comboBox5";
+            this.comboBox5.Size = new System.Drawing.Size(138, 21);
+            this.comboBox5.TabIndex = 44;
+            // 
+            // SearchForTeamsWithMostLoses
+            // 
+            this.SearchForTeamsWithMostLoses.AutoSize = true;
+            this.SearchForTeamsWithMostLoses.Location = new System.Drawing.Point(45, 284);
+            this.SearchForTeamsWithMostLoses.Name = "SearchForTeamsWithMostLoses";
+            this.SearchForTeamsWithMostLoses.Size = new System.Drawing.Size(262, 17);
+            this.SearchForTeamsWithMostLoses.TabIndex = 43;
+            this.SearchForTeamsWithMostLoses.TabStop = true;
+            this.SearchForTeamsWithMostLoses.Text = "Search for Teams with Most Loses at Home/Away";
+            this.SearchForTeamsWithMostLoses.UseVisualStyleBackColor = true;
             // 
             // searchForAMatch
             // 
@@ -261,10 +313,14 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(784, 661);
+            this.Controls.Add(this.comboBox5);
+            this.Controls.Add(this.SearchForTeamsWithMostLoses);
+            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.SearchForTeamsWithMostDraws);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.comboBox4);
             this.Controls.Add(this.comboBox6);
-            this.Controls.Add(this.SearchForTeamsWithMost);
+            this.Controls.Add(this.SearchForTeamsWithMostWins);
             this.Controls.Add(this.comboBox3);
             this.Controls.Add(this.searchForBestScorers);
             this.Controls.Add(this.comboBox2);
@@ -306,9 +362,13 @@
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.ComboBox comboBox3;
         private System.Windows.Forms.RadioButton searchForBestScorers;
-        private System.Windows.Forms.RadioButton SearchForTeamsWithMost;
+        private System.Windows.Forms.RadioButton SearchForTeamsWithMostWins;
         private System.Windows.Forms.ComboBox comboBox6;
         private System.Windows.Forms.ComboBox comboBox4;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.RadioButton SearchForTeamsWithMostDraws;
+        private System.Windows.Forms.ComboBox comboBox5;
+        private System.Windows.Forms.RadioButton SearchForTeamsWithMostLoses;
     }
 }

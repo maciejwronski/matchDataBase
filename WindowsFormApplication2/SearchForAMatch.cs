@@ -57,9 +57,17 @@ namespace WindowsFormsApplication2
                 {
                     connectionWithDatabase.searchForTeamsMostGoals(dataGridView1, comboBox2);
                 }
-                else if (SearchForTeamsWithMost.Checked)
+                else if (SearchForTeamsWithMostWins.Checked)
                 {
                     connectionWithDatabase.searchForTeamsMostWins(dataGridView1, comboBox6);
+                }
+                else if (SearchForTeamsWithMostDraws.Checked)
+                {
+                    connectionWithDatabase.searchForTeamsMostDraws(dataGridView1, comboBox1);
+                }
+                else if (SearchForTeamsWithMostLoses.Checked)
+                {
+                    connectionWithDatabase.searchForTeamsMostLoses(dataGridView1, comboBox5);
                 }
             }
             catch (Exception es)
